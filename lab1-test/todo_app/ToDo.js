@@ -7,13 +7,11 @@ import styles from './styles';
 const ToDo = (props) => {
   return (
     <View style={styles.todo}>
-        <View style={styles.todo__left}>
-            <CheckBox disabled={false} value={props.checked}/>
-            <Text>{props.name}</Text>
-        </View>
-        <TouchableOpacity style={styles.deleteBtn}>
+        <CheckBox disabled={false} value={props.checked}/>
+        <Text>{props.name}</Text>
+        {/* <TouchableOpacity style={styles.deleteBtn}>
             <Icon name={'close'} size={30}/>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
     </View>
   )
 }

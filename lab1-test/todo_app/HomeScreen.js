@@ -3,7 +3,7 @@ import React from 'react'
 import AddButton from './AddButton.js'
 import styles from './styles.js'
 import SearchBar from './SearchBar.js'
-import {View, Text, Alert} from 'react-native'
+import {View, Text, ScrollView} from 'react-native'
 import ToDo from './ToDo.js'
 
 const HomeScreen = ({navigation, route}) => {
@@ -23,7 +23,11 @@ const HomeScreen = ({navigation, route}) => {
     <View style={styles.container}>
       <Text>My custom form</Text>
       <SearchBar />
-      {todos}
+      <ScrollView 
+        style={styles.todoList} 
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
+        {todos}
+      </ScrollView>
       <AddButton onPress={() => navigation.navigate('Note')}/>
     </View>
   )

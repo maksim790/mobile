@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 10,
         marginBottom: 10,
-        //justifyContent: 'space-around'
     },
     button:{
         backgroundColor: '#c8d1fe',
@@ -22,22 +21,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 90,
     },
+    todoList:{
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+    },  
     todo:{
         padding: 20,
         margin: 5,
         borderRadius: 10,
-        borderColor: '#ffebbb',
-        backgroundColor: '#e3e3e3',
+        borderColor: '#c8d1fe',
+        backgroundColor: '#f4f5f5',
         display: 'flex',
         flexDirection: 'row',
         borderWidth: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    todo__left:{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     deleteBtn:{
         position: 'relative',
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         display: 'flex',
         justifyContent: 'space-around',
-        backgroundColor: '#ffebbb',
+        backgroundColor: '#c8d1fe',
     },
     addBtn__icon:{
         alignSelf: 'center',
