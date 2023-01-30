@@ -5,9 +5,10 @@ const styles = StyleSheet.create({
     container:{
         height: '100%',
         borderColor: 'red',
-        borderWidth: 2,
+        borderWidth: 0,
     },
     form:{
+        margin: 5,
         display: 'flex',
         flexDirection: 'row',
         marginTop: 10,
@@ -15,15 +16,18 @@ const styles = StyleSheet.create({
         //justifyContent: 'space-around'
     },
     button:{
-        backgroundColor: 'lightblue',
+        backgroundColor: '#c8d1fe',
+        borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 80,
+        width: 90,
     },
     todo:{
         padding: 20,
-        borderColor: 'orange',
-        backgroundColor: '#FFD580',
+        margin: 5,
+        borderRadius: 10,
+        borderColor: '#ffebbb',
+        backgroundColor: '#e3e3e3',
         display: 'flex',
         flexDirection: 'row',
         borderWidth: 1,

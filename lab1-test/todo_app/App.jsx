@@ -1,31 +1,23 @@
 import React, {useState} from 'react'
-import {View, Text} from 'react-native'
-import SearchBar from './SearchBar.js'
-import ToDo from './ToDo.js'
-import AddButton from './AddButton.js'
-import styles from './styles.js'
+import {View, Text, Alert} from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './HomeScreen.js'
+import NoteScreen from './NoteScreen.js'
+
+const Stack = createNativeStackNavigator();
 
 const App = (props) => {
-  const [tasks, setTasks] = useState(props.tasks)
+  const [tasks, setTasks] = useState(props.tasks)//fix faster
 
-  const todos = tasks?.map((task) => {
-    return (
-      <ToDo 
-        id={task.id}
-        name={task.name}
-        checked={task.checked}
-        key={task.id}
-      />
-    )
-  })
-
+  // alert(tasks)
   return (
-    <View style={styles.container}>
-      <Text>My custom form</Text>
-      <SearchBar />
-      {todos}
-      <AddButton />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} initialParams={todos={tasks}}/>
+        <Stack.Screen name="Note" component={NoteScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
