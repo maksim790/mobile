@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {View, Text} from 'react-native'
 import SearchBar from './SearchBar.js'
 import ToDo from './ToDo.js'
+import AddButton from './AddButton.js'
 
 const App = (props) => {
   const [tasks, setTasks] = useState(props.tasks)
@@ -22,6 +23,7 @@ const App = (props) => {
       <Text>My custom form</Text>
       <SearchBar />
       {todos}
+      <AddButton />
     </View>
   );
 };

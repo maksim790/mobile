@@ -22,6 +22,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderWidth: 1,
         alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    todo__left:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    deleteBtn:{
+        position: 'relative',
+        right: 10,
     }
 })
 
