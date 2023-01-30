@@ -1,10 +1,13 @@
 import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
-import { Button } from 'react-native-elements/dist/buttons/Button'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import styles from './styles'
 
 const AddButton = () => {
   return (
-    <Button />
+    <TouchableOpacity  style={styles.addBtn}>
+        <Icon name={'plus'} size={35} color={'black'} style={styles.addBtn__icon}/>
+    </TouchableOpacity>
   )
 }
 

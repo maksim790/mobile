@@ -1,6 +1,12 @@
 import {StyleSheet} from 'react-native'
+import DropShadow from "react-native-drop-shadow";
 
 const styles = StyleSheet.create({
+    container:{
+        height: '100%',
+        borderColor: 'red',
+        borderWidth: 2,
+    },
     form:{
         display: 'flex',
         flexDirection: 'row',
@@ -32,6 +38,22 @@ const styles = StyleSheet.create({
     deleteBtn:{
         position: 'relative',
         right: 10,
+    },
+    addBtn:{
+        width: 60,
+        height: 60,
+        position: 'absolute',
+        bottom: 35,
+        right: 35,
+        borderRadius: 20,
+        borderColor: 'powerblue',
+        borderWidth: 0,
+        display: 'flex',
+        justifyContent: 'space-around',
+        backgroundColor: '#ffebbb',
+    },
+    addBtn__icon:{
+        alignSelf: 'center',
     }
 })
 
