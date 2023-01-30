@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderWidth: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
     },
     deleteBtn:{
         position: 'relative',
@@ -57,6 +57,10 @@ const styles = StyleSheet.create({
     },
     addBtn__icon:{
         alignSelf: 'center',
+    },
+    noteInput:{
+        margin: 10,
+        fontSize: 18,
     }
 })
 

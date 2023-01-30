@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react'
 import styles from './styles.js'
-import {View, Text, Alert} from 'react-native'
+import {View, Text, TextInput} from 'react-native'
 
-const NoteScreen = () => {
+const NoteScreen = ({navigation, route}) => {
   return (
     <View style={styles.container}>
-      <Text>HAHAHAHA</Text>
+        <TextInput placeholder="" multiline={true} style={styles.noteInput}/>
     </View>
   )
 }
