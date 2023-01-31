@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     noteInput:{
         margin: 10,
         fontSize: 18,
+        justifyContent: 'flex-start',
     }
 })
 

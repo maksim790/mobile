@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './HomeScreen.js'
 import NoteScreen from './NoteScreen.js'
 import { nanoid } from 'nanoid';
+import 'react-native-url-polyfill/auto';
+import 'react-native-get-random-values';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +14,7 @@ const App = (props) => {
   const [tasks, setTasks] = useState(props.tasks)//fix faster
 
   function addTask(name){
-    const task = {id: `todo-${nanoid()}`, name: name, checked: false}
+    const task = {id: `todo-${nanoid()}`, name, checked: false}
     setTasks([...tasks, task])
   }
 
@@ -21,7 +23,9 @@ const App = (props) => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} initialParams={todos={tasks}}/>
-        <Stack.Screen name="Note" component={NoteScreen} initialParams={addTask={addTask}}/>
+        <Stack.Screen name="Note">
+          {(props) => <NoteScreen {...props} addTask={addTask} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -28,7 +28,7 @@ const HomeScreen = ({navigation, route}) => {
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
         {todos}
       </ScrollView>
-      <AddButton onPress={() => navigation.navigate('Note')}/>
+      <AddButton type={'plus'} onPress={() => navigation.navigate('Note', {})}/>
     </View>
   )
 }
