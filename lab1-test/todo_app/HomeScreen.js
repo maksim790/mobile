@@ -4,10 +4,11 @@ import AddButton from './AddButton.js'
 import styles from './styles.js'
 import SearchBar from './SearchBar.js'
 import {View, Text, ScrollView} from 'react-native'
+import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import ToDo from './ToDo.js'
 
 const HomeScreen = ({navigation, route}) => {
-  
+
   const todos = route.params.tasks?.map((task) => {
     return (
       <ToDo 
@@ -15,6 +16,15 @@ const HomeScreen = ({navigation, route}) => {
         name={task.name}
         checked={task.checked}
         key={task.id}
+        onPress={() =>
+          navigation.dispatch(
+            CommonActions.navigate({
+              name: 'Note',
+              params: {
+                task              }
+            })
+          )
+        }
       />
     )
   })
@@ -28,7 +38,13 @@ const HomeScreen = ({navigation, route}) => {
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
         {todos}
       </ScrollView>
-      <AddButton type={'plus'} onPress={() => navigation.navigate('Note', {})}/>
+      <AddButton type={'plus'} onPress={() =>
+          navigation.dispatch(
+            CommonActions.navigate({
+              name: 'Note',
+            })
+          )
+      }/>
     </View>
   )
 }

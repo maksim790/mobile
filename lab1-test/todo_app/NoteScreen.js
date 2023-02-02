@@ -4,18 +4,28 @@ import styles from './styles.js'
 import {View, Text, TextInput} from 'react-native'
 import AddButton from './AddButton.js'
 import { nanoid } from 'nanoid';
+import DeleteButton from './DeleteButton.js';
 
-const NoteScreen = (props) => {
+const NoteScreen = ({navigation, route, addTask, editTask}) => {
   const [name, setName] = useState('')
 
   function handleChange(text){
+    console.log(text)
     setName(text)
   }
 
   function handleSubmit(){
-    console.log(props)
-    props.addTask(name)
-    props.navigation.navigate('Home')
+    console.log("0000000000000000000000")
+    console.log(route.params?.task)
+
+    if(typeof route.params?.task != 'undefined'){
+      editTask(route.params.task.id, name)
+    }else{
+      console.log(name)
+      addTask(name)
+    }  
+    
+    navigation.navigate('Home')
   }
 
   // useEffect(() => {
@@ -23,16 +33,18 @@ const NoteScreen = (props) => {
   // }, [name])
 
   // useEffect(()=>{
-  //   navigation.addListener('beforeRemove',(e) => {
-  //     console.log(unsavedName)
+  //   props.navigation.addListener('beforeRemove',(e) => {
+  //     //setName('')
   //   })
   // },
-  // [navigation, route])
+  // [])
 
   return (
     <View style={styles.container}>
-        <TextInput placeholder="Type here" multiline style={styles.noteInput} onChangeText={handleChange}/>
+      {/* route.params.task.name */}
+        <TextInput placeholder="Type here" multiline style={styles.noteInput} onChange={handleChange}/>
         <AddButton type={'check'} onPress={handleSubmit}/>
+        {/* <DeleteButton onPress={handleSubmit}/> */}
     </View>
   )
 }
