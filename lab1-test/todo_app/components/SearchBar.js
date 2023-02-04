@@ -1,7 +1,7 @@
 import React from 'react'
-import {View, Text, TextInput, Button, Pressable, TouchableOpacity} from 'react-native'
+import {View, TextInput, TouchableOpacity} from 'react-native'
 import Entypo from 'react-native-vector-icons/Entypo'
-import styles from './styles'
+import styles from '../styles'
 
 const SearchBar = (props) => {
   return (

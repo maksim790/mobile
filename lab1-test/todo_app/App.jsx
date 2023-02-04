@@ -1,22 +1,19 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, Alert} from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './HomeScreen.js'
-import NoteScreen from './NoteScreen.js'
+import HomeScreen from './components/HomeScreen.js'
+import NoteScreen from './components/NoteScreen.js'
 import { nanoid } from 'nanoid';
 import 'react-native-url-polyfill/auto';
 import 'react-native-get-random-values';
-import ToDo from './ToDo.js';
-import { Tab } from 'react-native-elements/dist/tab/Tab';
 
 const Stack = createNativeStackNavigator();
 
 const data =
   [
-    {id: 'todo-0', name: 'Sleep', checked: true},
-    {id: 'todo-1', name: 'Eat', checked: false},
-    {id: 'todo-2', name: 'Work', checked: true},
+    {id: 'todo-0', name: 'Sleep', content: 'do sleep', checked: true},
+    {id: 'todo-1', name: 'Eat', content: 'do eat', checked: false},
+    {id: 'todo-2', name: 'Work', content: 'do work', checked: true},
   ]
 
 const ToDoPart = (props) => {
@@ -24,19 +21,16 @@ const ToDoPart = (props) => {
 
   useEffect(() => {
     console.log('changed to ', tasks.length)
-    //setTasks(tasks)
   }, [tasks])
 
-  function addTask(name){
-    const task = {id: `${nanoid()}`, name, checked: false}
+  function addTask(task){
     setTasks([...tasks, task])
   }
-  //tasks изменяется в app, но не успевает обновить пропсы в дочернем ToDoPart и показывает старый HomeScreen
 
-  function editTask(id, newName){
+  function editTask(id, newTask){
     const newTasks = tasks?.map((task) => {
       if(task.id == id){
-        return {...task, name: newName}
+        return newTask
       }
       return task
     })

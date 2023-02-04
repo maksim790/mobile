@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react'
 import AddButton from './AddButton.js'
-import styles from './styles.js'
+import styles from '../styles.js'
 import SearchBar from './SearchBar.js'
 import {View, Text, ScrollView} from 'react-native'
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
@@ -25,6 +25,7 @@ const HomeScreen = ({navigation, route, tasks}) => {
       <ToDo 
         id={task.id}
         name={task.name}
+        content={task.content}
         checked={task.checked}
         key={task.id}
         onPress={() =>

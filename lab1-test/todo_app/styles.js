@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native'
-import DropShadow from "react-native-drop-shadow";
 
 const styles = StyleSheet.create({
     container:{
@@ -37,6 +36,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
+        gap: 15,
+    },
+    todoName:{
+        fontSize: 18,
+        fontFamily: 'circular_std_bold',
+        fontWeight: 'bold',
+    },
+    todoCheckbox:{
     },
     deleteBtn:{
         width: 60,
@@ -70,6 +77,12 @@ const styles = StyleSheet.create({
     noteInput:{
         margin: 10,
         fontSize: 18,
+        justifyContent: 'flex-start',
+    },
+    noteHeading:{
+        textTransform: 'capitalize',
+        margin: 10,
+        fontSize: 22,
         justifyContent: 'flex-start',
     }
 })
