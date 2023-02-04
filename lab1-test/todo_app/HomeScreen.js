@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import AddButton from './AddButton.js'
 import styles from './styles.js'
 import SearchBar from './SearchBar.js'
@@ -8,8 +8,21 @@ import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import ToDo from './ToDo.js'
 
 const HomeScreen = ({navigation, route}) => {
+  
+  const [filter, setFilter] = useState('')
 
-  const todos = route.params.tasks?.map((task) => {
+  function handleChange(text){
+    setFilter(text.toLowerCase())
+  }
+
+  console.log(route.params.tasks)
+
+  const todos = route.params?.tasks
+    .filter(task => {
+    if(task.name.toLowerCase().includes(filter.trim()))
+      return task
+    })
+    .map((task) => {
     return (
       <ToDo 
         id={task.id}
@@ -21,7 +34,8 @@ const HomeScreen = ({navigation, route}) => {
             CommonActions.navigate({
               name: 'Note',
               params: {
-                task              }
+                task              
+              }
             })
           )
         }
@@ -31,8 +45,7 @@ const HomeScreen = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <Text>My custom form</Text>
-      <SearchBar />
+      <SearchBar handleChange={handleChange}/>
       <ScrollView 
         style={styles.todoList} 
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
@@ -45,6 +58,7 @@ const HomeScreen = ({navigation, route}) => {
             })
           )
       }/>
+      
     </View>
   )
 }

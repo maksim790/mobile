@@ -12,42 +12,62 @@ import { Tab } from 'react-native-elements/dist/tab/Tab';
 
 const Stack = createNativeStackNavigator();
 
-const tasks =
-   [
+const data =
+  [
     {id: 'todo-0', name: 'Sleep', checked: true},
     {id: 'todo-1', name: 'Eat', checked: false},
     {id: 'todo-2', name: 'Work', checked: true},
   ]
 
 const ToDoPart = (props) => {
-  //const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState([...props.tasks])
 
-  // useEffect(() => {
-  //   setTasks(props.tasks)
-  // }, [props.tasks])
+  useEffect(() => {
+    console.log('changed to ', tasks.length)
+    //setTasks(tasks)
+  }, [tasks])
 
   function addTask(name){
-    const task = {id: `todo-${nanoid()}`, name, checked: false}
-    // setTasks([...tasks, task])
-    tasks.push(task)
+    const task = {id: `${nanoid()}`, name, checked: false}
+    setTasks([...tasks, task])
   }
+  //tasks изменяется в app, но не успевает обновить пропсы в дочернем ToDoPart и показывает старый HomeScreen
 
   function editTask(id, newName){
     const newTasks = tasks?.map((task) => {
-      if(id == tasks[id])
+      if(task.id == id){
         return {...task, name: newName}
-
+      }
       return task
     })
 
-    tasks = newTasks
+    setTasks([...newTasks])
+  }
+
+  function deleteTask(id){
+    const newTasks = tasks?.filter((task) => {
+      if(task.id != id){
+        return task
+      }
+    })
+
+    setTasks([...newTasks])
   }
 
   return (
     <Stack.Navigator initialRouteName="Home">
+      {/* <Stack.Screen name="Home">
+        {(props) => <HomeScreen {...props} 
+          tasks={tasks}
+        />}
+      </Stack.Screen> */}
       <Stack.Screen name="Home" component={HomeScreen} initialParams={{tasks}}/>
       <Stack.Screen name="Note">
-        {(props) => <NoteScreen {...props} addTask={addTask} editTask={editTask}/>}
+        {(props) => <NoteScreen {...props} 
+          addTask={addTask} 
+          editTask={editTask} 
+          deleteTask={deleteTask}
+        />}
       </Stack.Screen>
     </Stack.Navigator>
   )
@@ -56,7 +76,7 @@ const ToDoPart = (props) => {
 const App = () => {
   return (
     <NavigationContainer>
-        <ToDoPart />
+        <ToDoPart tasks={data}/>
     </NavigationContainer>
   );
 };

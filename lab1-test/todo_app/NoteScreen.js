@@ -4,47 +4,32 @@ import styles from './styles.js'
 import {View, Text, TextInput} from 'react-native'
 import AddButton from './AddButton.js'
 import { nanoid } from 'nanoid';
+import 'react-native-url-polyfill/auto';
+import 'react-native-get-random-values';
 import DeleteButton from './DeleteButton.js';
 
-const NoteScreen = ({navigation, route, addTask, editTask}) => {
+const NoteScreen = ({navigation, route, addTask, editTask, deleteTask}) => {
   const [name, setName] = useState('')
 
   function handleChange(text){
-    console.log(text)
     setName(text)
   }
 
-  function handleSubmit(){
-    console.log("0000000000000000000000")
-    console.log(route.params?.task)
-
-    if(typeof route.params?.task != 'undefined'){
+  function handleSubmit(name){
+    if(route.params?.hasOwnProperty('task')){
       editTask(route.params.task.id, name)
     }else{
-      console.log(name)
       addTask(name)
-    }  
+    }
     
     navigation.navigate('Home')
   }
 
-  // useEffect(() => {
-  //   console.log(unsavedName)
-  // }, [name])
-
-  // useEffect(()=>{
-  //   props.navigation.addListener('beforeRemove',(e) => {
-  //     //setName('')
-  //   })
-  // },
-  // [])
-
   return (
     <View style={styles.container}>
-      {/* route.params.task.name */}
-        <TextInput placeholder="Type here" multiline style={styles.noteInput} onChange={handleChange}/>
-        <AddButton type={'check'} onPress={handleSubmit}/>
-        {/* <DeleteButton onPress={handleSubmit}/> */}
+        <TextInput defaultValue={route.params?.task.name} placeholder="Type here" multiline style={styles.noteInput} onChangeText={handleChange}/>
+        <AddButton type={'check'} onPress={() => handleSubmit(name)}/>
+        {route.params?.hasOwnProperty('task') && <DeleteButton onPress={() => deleteTask(route.params.task.id)}/>}
     </View>
   )
 }
