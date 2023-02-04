@@ -7,7 +7,7 @@ import {View, Text, ScrollView} from 'react-native'
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import ToDo from './ToDo.js'
 
-const HomeScreen = ({navigation, route}) => {
+const HomeScreen = ({navigation, route, tasks}) => {
   
   const [filter, setFilter] = useState('')
 
@@ -15,9 +15,7 @@ const HomeScreen = ({navigation, route}) => {
     setFilter(text.toLowerCase())
   }
 
-  console.log(route.params.tasks)
-
-  const todos = route.params?.tasks
+  const todos = tasks
     .filter(task => {
     if(task.name.toLowerCase().includes(filter.trim()))
       return task

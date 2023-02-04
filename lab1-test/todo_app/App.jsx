@@ -56,12 +56,12 @@ const ToDoPart = (props) => {
 
   return (
     <Stack.Navigator initialRouteName="Home">
-      {/* <Stack.Screen name="Home">
+      <Stack.Screen name="Home">
         {(props) => <HomeScreen {...props} 
           tasks={tasks}
         />}
-      </Stack.Screen> */}
-      <Stack.Screen name="Home" component={HomeScreen} initialParams={{tasks}}/>
+      </Stack.Screen>
+      {/* <Stack.Screen name="Home" component={HomeScreen} initialParams={{tasks}}/> */}
       <Stack.Screen name="Note">
         {(props) => <NoteScreen {...props} 
           addTask={addTask} 

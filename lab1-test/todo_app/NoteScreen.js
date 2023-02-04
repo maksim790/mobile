@@ -25,11 +25,17 @@ const NoteScreen = ({navigation, route, addTask, editTask, deleteTask}) => {
     navigation.navigate('Home')
   }
 
+  function handleDelete(name){
+    deleteTask(route.params.task.id)
+    navigation.navigate('Home')
+  }
+
   return (
     <View style={styles.container}>
         <TextInput defaultValue={route.params?.task.name} placeholder="Type here" multiline style={styles.noteInput} onChangeText={handleChange}/>
         <AddButton type={'check'} onPress={() => handleSubmit(name)}/>
-        {route.params?.hasOwnProperty('task') && <DeleteButton onPress={() => deleteTask(route.params.task.id)}/>}
+        {route.params?.hasOwnProperty('task') && 
+          <DeleteButton onPress={handleDelete}/>}
     </View>
   )
 }
