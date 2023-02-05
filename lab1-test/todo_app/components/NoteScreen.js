@@ -40,8 +40,10 @@ const NoteScreen = ({navigation, route, addTask, editTask, deleteTask}) => {
 
   return (
     <View style={styles.container}>
-        <TextInput defaultValue={task.name} placeholder="Heading" multiline style={styles.noteHeading} onChangeText={(text) => setTask({...task, name: text})}/>
-        <TextInput defaultValue={task.content} placeholder="Type here" multiline style={styles.noteInput} onChangeText={(text) => setTask({...task, content: text})}/>
+        <TextInput defaultValue={task.name} placeholder="Heading" multiline style={styles.noteHeading} 
+          onChangeText={(text) => setTask({...task, name: text})}/>
+        <TextInput defaultValue={task.content} placeholder="Type here" multiline style={styles.noteInput} 
+          onChangeText={(text) => setTask({...task, content: text})}/>
         <AddButton type={'check'} onPress={() => handleSubmit(task)}/>
         {editing && 
           <NoteDeleteButton onPress={handleDelete}/>}

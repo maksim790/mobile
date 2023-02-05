@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#c8d1fe',
         alignItems: 'center',
         justifyContent: 'center',
+        marginLeft: 5,
+        marginRight: -5,
     }, 
     swipeDeleteBtn__text:{
         height: 100,
@@ -45,11 +47,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#c8d1fe',
         flex: 3,
+        marginLeft: 5,
+        marginRight: 5,
     },
     todo:{
         // padding: 15,
-        marginLeft: 5,
-        marginRight: 5,
         //margin: 5,
         borderRadius: 10,
         // borderColor: '#c8d1fe',
@@ -117,7 +119,12 @@ const styles = StyleSheet.create({
     },
     searchInput:{
         fontSize: 18,
-    }
+    },
+    emptyList:{
+        alignSelf: 'center',
+        fontSize: 24,
+        fontStyle: 'italic',
+    },
 })
 
 export default styles

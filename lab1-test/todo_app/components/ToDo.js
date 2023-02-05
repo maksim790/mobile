@@ -18,6 +18,7 @@ const ToDo = (props) => {
       <ListItem.Swipeable
         onPress={props.onPress}
         style={styles.swipeable}
+        rightWidth={-300}
         leftWidth={80}
         leftContent={(reset) => (
             <HomeDeleteButton onPress={() => {

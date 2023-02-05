@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './components/HomeScreen.js'
-import NoteScreen from './components/NoteScreen.js'
-import { nanoid } from 'nanoid';
 import 'react-native-url-polyfill/auto';
 import 'react-native-get-random-values';
+import FileSystem from './classes/FileSystem'
+import ToDoPart from './components/ToDoPart'
 
-const Stack = createNativeStackNavigator();
+const fs = new FileSystem()
 
 const data =
   [
@@ -15,59 +13,6 @@ const data =
     {id: 'todo-1', name: 'Eat', content: 'do eat', checked: false},
     {id: 'todo-2', name: 'Work', content: 'do work', checked: true},
   ]
-
-const ToDoPart = (props) => {
-  const [tasks, setTasks] = useState([...props.tasks])
-
-  useEffect(() => {
-    console.log('changed to ', tasks.length)
-  }, [tasks])
-
-  function addTask(task){
-    setTasks([...tasks, task])
-  }
-
-  function editTask(id, newTask){
-    const newTasks = tasks?.map((task) => {
-      if(task.id == id){
-        return newTask
-      }
-      return task
-    })
-
-    setTasks([...newTasks])
-    console.log(tasks)
-  }
-
-  function deleteTask(id){
-    const newTasks = tasks?.filter((task) => {
-      if(task.id != id){
-        return task
-      }
-    })
-
-    setTasks([...newTasks])
-  }
-
-  return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home">
-        {(props) => <HomeScreen {...props} 
-          tasks={tasks}
-          editTask={editTask} 
-          deleteTask={deleteTask}
-        />}
-      </Stack.Screen>
-      <Stack.Screen name="Note">
-        {(props) => <NoteScreen {...props} 
-          addTask={addTask} 
-          editTask={editTask} 
-          deleteTask={deleteTask}
-        />}
-      </Stack.Screen>
-    </Stack.Navigator>
-  )
-}
 
 const App = () => {
   return (

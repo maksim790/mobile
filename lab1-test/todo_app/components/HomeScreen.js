@@ -8,7 +8,7 @@ import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import ToDo from './ToDo.js'
 
 const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
-  
+  const emptyListString = <Text style={styles.emptyList}>No tasks</Text>
   const [filter, setFilter] = useState('')
 
   function handleChange(text){
@@ -48,7 +48,7 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
         <KeyboardAvoidingView
           style={styles.todoList} 
           contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
-          {todos}
+          {tasks.length > 0 ? todos : emptyListString}
         </KeyboardAvoidingView>
       </ScrollView>
       <AddButton type={'plus'} onPress={() =>

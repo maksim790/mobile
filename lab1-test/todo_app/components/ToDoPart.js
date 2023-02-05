@@ -1,0 +1,63 @@
+import React, {useState, useEffect} from 'react'
+import HomeScreen from './HomeScreen.js'
+import NoteScreen from './NoteScreen.js'
+import 'react-native-url-polyfill/auto';
+import 'react-native-get-random-values';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
+const ToDoPart = (props) => {
+    const [tasks, setTasks] = useState([...props.tasks])
+  
+    useEffect(() => {
+      console.log('changed to ', tasks.length)
+    }, [tasks])
+  
+    function addTask(task){
+      setTasks([...tasks, task])
+    }
+  
+    function editTask(id, newTask){
+      const newTasks = tasks?.map((task) => {
+        if(task.id == id){
+          return newTask
+        }
+        return task
+      })
+  
+      setTasks([...newTasks])
+      console.log(tasks)
+    }
+  
+    function deleteTask(id){
+      const newTasks = tasks?.filter((task) => {
+        if(task.id != id){
+          return task
+        }
+      })
+  
+      setTasks([...newTasks])
+    }
+  
+    return (
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home">
+          {(props) => <HomeScreen {...props} 
+            tasks={tasks}
+            editTask={editTask} 
+            deleteTask={deleteTask}
+          />}
+        </Stack.Screen>
+        <Stack.Screen name="Note">
+          {(props) => <NoteScreen {...props} 
+            addTask={addTask} 
+            editTask={editTask} 
+            deleteTask={deleteTask}
+          />}
+        </Stack.Screen>
+      </Stack.Navigator>
+    )
+  }
+
+  export default ToDoPart
