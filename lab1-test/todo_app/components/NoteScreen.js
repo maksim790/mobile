@@ -21,6 +21,9 @@ const NoteScreen = ({navigation, route, addTask, editTask, deleteTask}) => {
   })
 
   function handleSubmit(task){
+    if(task.name == '')
+      task.name = 'New note'
+      
     if(editing){
       editTask(route.params.task.id, task)
     }else{

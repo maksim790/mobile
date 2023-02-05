@@ -5,12 +5,13 @@ import styles from '../styles';
 
 const ToDo = (props) => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={props.onPress} activeOpacity={2}>
       <View style={styles.todo}>
         <CheckBox disabled={false} value={props.checked} style={styles.todoCheckbox}/>
         <View>
           <Text style={styles.todoName}>{props.name}</Text>
-          {/* <Text>{props.content}</Text> */}
+          {props.content.trim() != '' && 
+            <Text style={styles.todoContent}>{props.content}</Text>}
         </View>
         {/* <TouchableOpacity style={styles.deleteBtn}>
             <Icon name={'close'} size={30}/>

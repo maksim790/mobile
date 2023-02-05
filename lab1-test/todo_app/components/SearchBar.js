@@ -10,7 +10,7 @@ const SearchBar = (props) => {
             <Text>Search</Text>
         </TouchableOpacity> */}
         <Entypo name='magnifying-glass' size={35} color={'black'} style={styles.addBtn__icon}/>
-        <TextInput placeholder="Type here.." onChangeText={props.handleChange}/>
+        <TextInput placeholder="Type here.." onChangeText={props.handleChange} style={styles.searchInput}/>
     </View>
   )
 }

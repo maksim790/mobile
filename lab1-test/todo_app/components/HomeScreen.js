@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import AddButton from './AddButton.js'
 import styles from '../styles.js'
 import SearchBar from './SearchBar.js'
-import {View, Text, ScrollView} from 'react-native'
+import {View, Text, ScrollView, KeyboardAvoidingView} from 'react-native'
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import ToDo from './ToDo.js'
 
@@ -24,7 +24,7 @@ const HomeScreen = ({navigation, route, tasks}) => {
     return (
       <ToDo 
         id={task.id}
-        name={task.name}
+        name={task.name.slice(0, 27)}
         content={task.content}
         checked={task.checked}
         key={task.id}
@@ -50,6 +50,9 @@ const HomeScreen = ({navigation, route, tasks}) => {
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
         {todos}
       </ScrollView>
+      <KeyboardAvoidingView>
+        <Text>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Text>
+      </KeyboardAvoidingView>
       <AddButton type={'plus'} onPress={() =>
           navigation.dispatch(
             CommonActions.navigate({

@@ -26,14 +26,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },  
     todo:{
-        padding: 20,
+        padding: 15,
         margin: 5,
         borderRadius: 10,
         borderColor: '#c8d1fe',
         backgroundColor: '#f4f5f5',
+        // borderColor: 'pink',
         display: 'flex',
         flexDirection: 'row',
-        borderWidth: 1,
+        borderWidth: 2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         gap: 15,
@@ -41,7 +42,12 @@ const styles = StyleSheet.create({
     todoName:{
         fontSize: 18,
         fontFamily: 'circular_std_bold',
-        fontWeight: 'bold',
+        fontWeight: '700',
+    },
+    todoContent:{
+        fontSize: 16,
+        fontFamily: 'circular_std_bold',
+        fontWeight: '600',
     },
     todoCheckbox:{
     },
@@ -80,10 +86,14 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     noteHeading:{
-        textTransform: 'capitalize',
+        // textTransform: 'uppercase',
         margin: 10,
         fontSize: 22,
         justifyContent: 'flex-start',
+        fontWeight: '800',
+    },
+    searchInput:{
+        fontSize: 18,
     }
 })
 
