@@ -36,6 +36,7 @@ const ToDoPart = (props) => {
     })
 
     setTasks([...newTasks])
+    console.log(tasks)
   }
 
   function deleteTask(id){
@@ -53,9 +54,10 @@ const ToDoPart = (props) => {
       <Stack.Screen name="Home">
         {(props) => <HomeScreen {...props} 
           tasks={tasks}
+          editTask={editTask} 
+          deleteTask={deleteTask}
         />}
       </Stack.Screen>
-      {/* <Stack.Screen name="Home" component={HomeScreen} initialParams={{tasks}}/> */}
       <Stack.Screen name="Note">
         {(props) => <NoteScreen {...props} 
           addTask={addTask} 

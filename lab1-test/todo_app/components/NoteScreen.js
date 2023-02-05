@@ -5,7 +5,7 @@ import {View, Text, TextInput} from 'react-native'
 import AddButton from './AddButton.js'
 import 'react-native-url-polyfill/auto';
 import 'react-native-get-random-values';
-import DeleteButton from './DeleteButton.js';
+import NoteDeleteButton from './NoteDeleteButton.js';
 import newTask from '../classes/Task.js'
 import { nanoid } from 'nanoid';
 import 'react-native-url-polyfill/auto';
@@ -44,7 +44,7 @@ const NoteScreen = ({navigation, route, addTask, editTask, deleteTask}) => {
         <TextInput defaultValue={task.content} placeholder="Type here" multiline style={styles.noteInput} onChangeText={(text) => setTask({...task, content: text})}/>
         <AddButton type={'check'} onPress={() => handleSubmit(task)}/>
         {editing && 
-          <DeleteButton onPress={handleDelete}/>}
+          <NoteDeleteButton onPress={handleDelete}/>}
     </View>
   )
 }

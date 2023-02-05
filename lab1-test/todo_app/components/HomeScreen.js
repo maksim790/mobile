@@ -7,7 +7,7 @@ import {View, Text, ScrollView, KeyboardAvoidingView} from 'react-native'
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import ToDo from './ToDo.js'
 
-const HomeScreen = ({navigation, route, tasks}) => {
+const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
   
   const [filter, setFilter] = useState('')
 
@@ -23,11 +23,10 @@ const HomeScreen = ({navigation, route, tasks}) => {
     .map((task) => {
     return (
       <ToDo 
-        id={task.id}
-        name={task.name.slice(0, 27)}
-        content={task.content}
-        checked={task.checked}
+        task={task}
         key={task.id}
+        editTask={editTask}
+        deleteTask={deleteTask}
         onPress={() =>
           navigation.dispatch(
             CommonActions.navigate({
@@ -45,14 +44,13 @@ const HomeScreen = ({navigation, route, tasks}) => {
   return (
     <View style={styles.container}>
       <SearchBar handleChange={handleChange}/>
-      <ScrollView 
-        style={styles.todoList} 
-        contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
-        {todos}
+      <ScrollView >
+        <KeyboardAvoidingView
+          style={styles.todoList} 
+          contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
+          {todos}
+        </KeyboardAvoidingView>
       </ScrollView>
-      <KeyboardAvoidingView>
-        <Text>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</Text>
-      </KeyboardAvoidingView>
       <AddButton type={'plus'} onPress={() =>
           navigation.dispatch(
             CommonActions.navigate({
