@@ -19,7 +19,9 @@ const ToDoPart = (props) => {
       fileSystem.init()
       fileSystem.readFile().then((res) => {
         console.log('from file: ' + res)
-        setTasks(JSON.parse(res).replace(/(,|{)\s*(\w+)\s*:/g, '$1"$2":'))
+        const obj = JSON.parse(res)
+        console.log('!!!!!' + Array(obj)[0])
+        setTasks(eval(obj))
       })
     }, [])
 

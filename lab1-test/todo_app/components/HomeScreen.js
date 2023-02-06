@@ -15,39 +15,12 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
     setFilter(text.toLowerCase())
   }
 
-  // tasks.filter(task => {
-  //   if(task.name.toLowerCase().includes(filter.trim()))
-  //     return task
-  //   })
-  //   .map((task) => {
-  //   return (
-  //     <ToDo 
-  //       task={task}
-  //       key={task.id}
-  //       editTask={editTask}
-  //       deleteTask={deleteTask}
-  //       onPress={() =>
-  //         navigation.dispatch(
-  //           CommonActions.navigate({
-  //             name: 'Note',
-  //             params: {
-  //               task              
-  //             }
-  //           })
-  //         )
-  //       }
-  //     />
-  //   )
-  // })
-
-  console.log('tasks: ' + tasks)
-  let obj = [{"id":"todo-0","name":"Sleep","content":"do sleep","checked":true}]
-
-  let todos = (tasks.length > 0) ? (obj.filter(task => {
+  const todos = tasks.filter(task => {
     if(task.name.toLowerCase().includes(filter.trim()))
       return task
     })
     .map((task) => {
+    console.log('tasks!: ' + tasks)
     return (
       <ToDo 
         task={task}
@@ -66,7 +39,7 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
         }
       />
     )
-  })) : emptyListString
+  })
 
   return (
     <View style={styles.container}>
