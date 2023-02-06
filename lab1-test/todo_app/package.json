@@ -20,6 +20,7 @@
     "react-native": "0.71.1",
     "react-native-drop-shadow": "^0.0.6",
     "react-native-elements": "^3.4.3",
+    "react-native-file-access": "^2.5.2",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-get-random-values": "^1.8.0",

@@ -15,8 +15,33 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
     setFilter(text.toLowerCase())
   }
 
-  const todos = tasks
-    .filter(task => {
+  // tasks.filter(task => {
+  //   if(task.name.toLowerCase().includes(filter.trim()))
+  //     return task
+  //   })
+  //   .map((task) => {
+  //   return (
+  //     <ToDo 
+  //       task={task}
+  //       key={task.id}
+  //       editTask={editTask}
+  //       deleteTask={deleteTask}
+  //       onPress={() =>
+  //         navigation.dispatch(
+  //           CommonActions.navigate({
+  //             name: 'Note',
+  //             params: {
+  //               task              
+  //             }
+  //           })
+  //         )
+  //       }
+  //     />
+  //   )
+  // })
+
+  console.log('tasks: ' + tasks)
+  let todos = (tasks.length > 0) ? (tasks.filter(task => {
     if(task.name.toLowerCase().includes(filter.trim()))
       return task
     })
@@ -39,7 +64,7 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
         }
       />
     )
-  })
+  })) : emptyListString
 
   return (
     <View style={styles.container}>

@@ -25,7 +25,8 @@ const ToDo = (props) => {
               reset()
               props.deleteTask(props.task.id)
             }}/>
-        )}>
+        )}
+        >
           <CheckBox disabled={false} value={toggleCheckBox} style={styles.todoCheckbox} onValueChange={(newValue) => handleToggleCheckBox(newValue)}/>
           <View>
             <Text style={styles.todoName}>{props.task.name.slice(0, 25).trim()}</Text>

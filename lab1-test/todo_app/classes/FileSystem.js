@@ -4,7 +4,7 @@ import RNFS from 'react-native-fs';
 class FileSystem{
     constructor(){
         this.path = RNFS.DownloadDirectoryPath
-        this.fileName = '/tas.json'
+        this.fileName = '/999.json'
         this.fullPath = this.path + this.fileName
     }
 
@@ -13,13 +13,14 @@ class FileSystem{
     }
 
     async init(){
+        console.log('init here')
         RNFS.exists(this.fullPath)
         .then((res) => {
             if(res){
                 console.log('file exists')
             }else{
                 console.log('no file')
-                RNFS.writeFile(this.fullPath, '')
+                RNFS.writeFile(this.fullPath, '[{"id":"todo-0","name":"Sleep","content":"do sleep","checked":true}]', 'utf8')
                 .then((res) => {
                     console.log('file is created')
                 })
@@ -31,17 +32,16 @@ class FileSystem{
     }
     
     async saveFile(data){
-        RNFS.writeFile(this.fullPath, data)
-        .then(() => {
-            console.log('file saved: ' + data)
-        })
+        // console.log('stringify: ' + data)
+        // RNFS.writeFile(this.fullPath, JSON.stringify(data))
+        // .then(() => {
+        //     console.log('file saved: ' + data)
+        // })
     }
 
     readFile = async () => {
-        const response = await RNFS.readFile(this.fullPath);
-        console.log('data from file: ' + response);
-        return response
-    };
+        return await RNFS.readFile(this.fullPath, 'utf8')
+    }
 }
 
 export default FileSystem
