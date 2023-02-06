@@ -11,7 +11,7 @@ const ToDoPart = (props) => {
     const [tasks, setTasks] = useState([...props.tasks])
   
     useEffect(() => {
-      console.log('changed to ', tasks.length)
+      props.updateData(tasks)
     }, [tasks])
   
     function addTask(task){

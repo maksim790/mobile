@@ -5,19 +5,35 @@ import 'react-native-get-random-values';
 import FileSystem from './classes/FileSystem'
 import ToDoPart from './components/ToDoPart'
 
-const fs = new FileSystem()
+const fileSystem = new FileSystem()
+// const database = new FileSystem()
 
-const data =
-  [
-    {id: 'todo-0', name: 'Sleep', content: 'do sleep', checked: true},
-    {id: 'todo-1', name: 'Eat', content: 'do eat', checked: false},
-    {id: 'todo-2', name: 'Work', content: 'do work', checked: true},
-  ]
 
 const App = () => {
+  const [data, setData] = useState([])
+  const [storage, setSystem] = useState({})
+
+  useEffect(() => {
+    setSystem(fileSystem)
+    console.log('init here')
+    fileSystem.init()
+    const path = fileSystem.getPath()
+    setData(fileSystem.readFile())
+  }, [])
+
+  function toggleStorage(){
+    // setSystem(storage == fileSystem ? database : fileSystem)
+  }
+
+  async function updateData(tasks){
+    fileSystem.readFile()
+    console.log('data is updated')
+    fileSystem.saveFile(JSON.stringify(tasks))
+  }
+
   return (
     <NavigationContainer>
-        <ToDoPart tasks={data}/>
+        <ToDoPart tasks={[...data]} toggleStorage={toggleStorage} updateData={updateData}/>
     </NavigationContainer>
   );
 };
