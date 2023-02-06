@@ -32,11 +32,10 @@ class FileSystem{
     }
     
     async saveFile(data){
-        // console.log('stringify: ' + data)
-        // RNFS.writeFile(this.fullPath, JSON.stringify(data))
-        // .then(() => {
-        //     console.log('file saved: ' + data)
-        // })
+        RNFS.writeFile(this.fullPath, data)
+        .then(() => {
+            console.log('file saved: ' + data)
+        })
     }
 
     readFile = async () => {

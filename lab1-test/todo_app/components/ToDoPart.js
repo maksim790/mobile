@@ -17,23 +17,17 @@ const ToDoPart = (props) => {
     useEffect(() => {
       //setSystem(fileSystem)
       fileSystem.init()
-      //const path = fileSystem.getPath()
-      // fileSystem.readFile()
-      //   .then((data) => {
-      //     setTasks(JSON.parse(data))
-      //     console.log('___ ' + JSON.parse(data))
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //   })
       fileSystem.readFile().then((res) => {
-        console.log(res)
-        setTasks(JSON.parse(res))
+        console.log('from file: ' + res)
+        setTasks(JSON.parse(res).replace(/(,|{)\s*(\w+)\s*:/g, '$1"$2":'))
       })
     }, [])
 
     useEffect(() => {
-      // fileSystem.saveFile(JSON.stringify(tasks))
+      console.log('time to save ' + JSON.stringify(tasks))
+
+      if(tasks.length)
+        fileSystem.saveFile(JSON.stringify(tasks))
     }, [tasks])
 
     // function toggleStorage(){
@@ -63,7 +57,7 @@ const ToDoPart = (props) => {
       })
   
       setTasks([...newTasks])
-      console.log(tasks)
+      //console.log(tasks)
     }
   
     function deleteTask(id){
