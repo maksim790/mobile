@@ -5,36 +5,43 @@ import 'react-native-url-polyfill/auto';
 import 'react-native-get-random-values';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FileSystem from '../classes/FileSystem'
+import Database from '../classes/Database'
+import SettingScreen from './SettingScreen'
 
 const Stack = createNativeStackNavigator();
 const fileSystem = new FileSystem()
+const database = new Database()
 
 const ToDoPart = (props) => {
     const [tasks, setTasks] = useState([])
-    const [storage, setSystem] = useState({})
-    // console.log(JSON.stringify([{id: 'todo-0', name: 'Sleep', content: 'do sleep', checked: true}]))
+    const [storage, setStorage] = useState({})
     
     useEffect(() => {
       //setSystem(fileSystem)
+      database.init()
+      //database.insert()
+      database.select()
       fileSystem.init()
       fileSystem.readFile().then((res) => {
-        console.log('from file: ' + res)
-        const obj = JSON.parse(res)
-        console.log('!!!!!' + Array(obj)[0])
-        setTasks(eval(obj))
+        setTasks(res)
       })
     }, [])
 
     useEffect(() => {
       console.log('time to save ' + JSON.stringify(tasks))
-
-      if(tasks.length)
-        fileSystem.saveFile(JSON.stringify(tasks))
+      // if(tasks.length)
+      fileSystem.saveFile(tasks)
     }, [tasks])
 
-    // function toggleStorage(){
-    //   // setSystem(storage == fileSystem ? database : fileSystem)
-    // }
+    function toggleStorage(){
+      setStorage(storage == fileSystem ? database : fileSystem)
+    }
+
+    function getStorageValue(){
+      if(storage == fileSystem)
+        return false
+      return true
+    }
 
     // async function updateData(tasks){
     //   fileSystem.readFile()
@@ -86,6 +93,12 @@ const ToDoPart = (props) => {
             addTask={addTask} 
             editTask={editTask} 
             deleteTask={deleteTask}
+          />}
+        </Stack.Screen>
+        <Stack.Screen name="Setting">
+          {(props) => <SettingScreen {...props} 
+            storage={getStorageValue()}
+            toggleStorage={toggleStorage}
           />}
         </Stack.Screen>
       </Stack.Navigator>

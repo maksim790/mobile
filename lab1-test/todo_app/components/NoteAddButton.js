@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from '../styles'
 
-const AddButton = (props) => {
+const NoteAddButton = (props) => {
   return (
     <TouchableOpacity  style={styles.addBtn} onPress={props.onPress}>
         <Icon name={props.type} size={35} color={'black'} style={styles.addBtn__icon}/>
@@ -11,4 +11,4 @@ const AddButton = (props) => {
   )
 }
 
-export default AddButton
+export default NoteAddButton

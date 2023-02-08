@@ -125,6 +125,12 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontStyle: 'italic',
     },
+    homeHeader:{
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginRight: 10,
+    }
 })
 
 export default styles

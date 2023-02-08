@@ -1,11 +1,12 @@
 import 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react'
-import AddButton from './AddButton.js'
+import NoteAddButton from './NoteAddButton.js'
 import styles from '../styles.js'
 import SearchBar from './SearchBar.js'
 import {View, Text, ScrollView, KeyboardAvoidingView} from 'react-native'
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
-import ToDo from './ToDo.js'
+import Note from './Note.js'
+import SettingsButton from './SettingsButton'
 
 const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
   const emptyListString = <Text style={styles.emptyList}>No tasks</Text>
@@ -20,9 +21,8 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
       return task
     })
     .map((task) => {
-    console.log('tasks!: ' + tasks)
     return (
-      <ToDo 
+      <Note 
         task={task}
         key={task.id}
         editTask={editTask}
@@ -43,7 +43,18 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
 
   return (
     <View style={styles.container}>
-      <SearchBar handleChange={handleChange}/>
+      <View style={styles.homeHeader}>
+        <SearchBar handleChange={handleChange}/>
+        <SettingsButton 
+          onPress={() =>
+            navigation.dispatch(
+              CommonActions.navigate({
+                name: 'Setting',
+              })
+            )
+          }
+        />
+      </View>
       <ScrollView >
         <KeyboardAvoidingView
           style={styles.todoList} 
@@ -51,7 +62,7 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
           {tasks.length > 0 ? todos : emptyListString}
         </KeyboardAvoidingView>
       </ScrollView>
-      <AddButton type={'plus'} onPress={() =>
+      <NoteAddButton type={'plus'} onPress={() =>
           navigation.dispatch(
             CommonActions.navigate({
               name: 'Note',

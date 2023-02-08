@@ -6,7 +6,7 @@ import styles from '../styles'
 const HomeDeleteButton = (props) => {
   return (
     <Pressable
-      ti="Delete"
+      title="Delete"
       onPress={props.onPress}
       style={styles.swipeDeleteBtn}
     >

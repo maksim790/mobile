@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from '../styles'
 
-const ConfirmButton = (props) => {
+const NoteConfirmButton = (props) => {
   return (
     <TouchableOpacity  style={styles.addBtn} onPress={props.onPress}>
         <Icon name={'check'} size={35} color={'black'} style={styles.addBtn__icon}/>
@@ -11,4 +11,4 @@ const ConfirmButton = (props) => {
   )
 }
 
-export default ConfirmButton
+export default NoteConfirmButton

@@ -6,7 +6,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { ListItem } from '@rneui/themed';
 import HomeDeleteButton from './HomeDeleteButton'
 
-const ToDo = (props) => {
+const Note = (props) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(props.task.checked)
 
   function handleToggleCheckBox(newValue){
@@ -37,4 +37,4 @@ const ToDo = (props) => {
   )
 }
 
-export default ToDo
+export default Note

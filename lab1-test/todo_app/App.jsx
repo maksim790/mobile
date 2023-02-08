@@ -3,13 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-url-polyfill/auto';
 import 'react-native-get-random-values';
 import ToDoPart from './components/ToDoPart'
+import SQLite, {openDatabase} from 'react-native-sqlite-storage';
 
-// ([{
-//   name: ``,
-//   content: '',
-//   id: `11`,
-//   checked: false,
-// }])
+const db = SQLite.openDatabase({
+  name: "MainDB",
+  location: "default",
+});
 
 const App = () => {
 
