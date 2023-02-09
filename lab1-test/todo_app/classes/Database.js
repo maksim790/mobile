@@ -25,40 +25,32 @@ export default class Database{
     });
   }
 
-  async insert(task){
-    this.db.transaction(function (tx) {
-      tx.executeSql(
+  async setData(data){
+    this.db.transaction(function (txn) {
+      txn.executeSql(
         'INSERT INTO tasks (name, content, checked) VALUES (?,?,?)',
-        ['Cry', 'qweqweqweqwe', 'false'],
-        // [userName, userContact, userAddress],
-        (tx, results) => {
+        [data[0].name, data[0].content, data[0].checked],
+        (txn, results) => {
           console.log('Results', results.rowsAffected);
         }
       );
     });
   }
 
-  async select(){
-    this.db.transaction((tx) => {
-      tx.executeSql(
+  getData(setTasks){
+    let data
+    this.db.transaction((txn) => {
+      txn.executeSql(
         'SELECT * FROM tasks',
         [],
-        (tx, results) => {
-          var len = results.rows.length;
-          console.log('len', len);
-          console.log(results.rows.item(0))
+        (txn, results) => {
+          data = results.rows.item(0)
+          console.log(data)
+          setTasks([{...data, checked: (Boolean(data.checked))}])
         }
       );
     });
+
+    return data
   }
 }
-
-// const createTable = () => {
-//   db.transaction((tx => {
-//     tx.executeSql(
-//       "CREATE TABLE IF NOT EXISTS "
-//       + "Users "
-//       + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Age INTEGER);"     
-//     )
-//   }))
-// }

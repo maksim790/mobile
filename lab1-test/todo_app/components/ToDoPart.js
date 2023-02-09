@@ -14,23 +14,26 @@ const database = new Database()
 
 const ToDoPart = (props) => {
     const [tasks, setTasks] = useState([])
-    const [storage, setStorage] = useState({})
-    
-    useEffect(() => {
-      //setSystem(fileSystem)
-      database.init()
-      //database.insert()
-      database.select()
-      fileSystem.init()
-      fileSystem.readFile().then((res) => {
-        setTasks(res)
-      })
-    }, [])
+    const [storage, setStorage] = useState(database)
 
     useEffect(() => {
-      console.log('time to save ' + JSON.stringify(tasks))
+      console.log('storage changed')
+      storage.init()
+      if(storage == fileSystem){
+        storage.getData().then((res) => {
+          console.log('result: '+ res)
+          setTasks(res)
+        })
+      }else{
+        storage.getData(setTasks)
+      }
+
+    }, [storage])
+
+    useEffect(() => {
+      //console.log('time to save ' + JSON.stringify(tasks))
       // if(tasks.length)
-      fileSystem.saveFile(tasks)
+        // storage.setData(tasks)
     }, [tasks])
 
     function toggleStorage(){
@@ -38,20 +41,10 @@ const ToDoPart = (props) => {
     }
 
     function getStorageValue(){
-      if(storage == fileSystem)
-        return false
-      return true
+      if(storage === fileSystem)
+        return true
+      return false
     }
-
-    // async function updateData(tasks){
-    //   fileSystem.readFile()
-    //   console.log('data is updated')
-    //   fileSystem.saveFile(JSON.stringify(tasks))
-    // }
-  
-    // useEffect(() => {
-    //   props.updateData(tasks)
-    // }, [tasks])
   
     function addTask(task){
       setTasks([...tasks, task])

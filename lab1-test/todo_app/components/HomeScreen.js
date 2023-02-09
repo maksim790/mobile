@@ -16,7 +16,9 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
     setFilter(text.toLowerCase())
   }
 
-  const todos = tasks.filter(task => {
+  console.log('_____')
+  console.log(tasks)
+  const todos = (typeof tasks == 'undefined' || tasks.length == 0) ? emptyListString : tasks.filter(task => {
     if(task.name.toLowerCase().includes(filter.trim()))
       return task
     })
@@ -59,7 +61,8 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
         <KeyboardAvoidingView
           style={styles.todoList} 
           contentContainerStyle={{ flexGrow: 1, paddingBottom: 300 }}>
-          {tasks.length > 0 ? todos : emptyListString}
+          {/* {tasks.length > 0 ? todos : emptyListString} */}
+          {todos}
         </KeyboardAvoidingView>
       </ScrollView>
       <NoteAddButton type={'plus'} onPress={() =>

@@ -5,11 +5,6 @@ import 'react-native-get-random-values';
 import ToDoPart from './components/ToDoPart'
 import SQLite, {openDatabase} from 'react-native-sqlite-storage';
 
-const db = SQLite.openDatabase({
-  name: "MainDB",
-  location: "default",
-});
-
 const App = () => {
 
   return (

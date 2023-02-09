@@ -8,10 +8,6 @@ class FileSystem{
         this.fullPath = this.path + this.fileName
     }
 
-    getPath(){
-        return this.fullPath
-    }
-
     async init(){
         console.log('init here')
         RNFS.exists(this.fullPath)
@@ -34,7 +30,7 @@ class FileSystem{
         })
     }
     
-    async saveFile(data){
+    async setData(data){
         RNFS.writeFile(this.fullPath, JSON.stringify(data))
         .then(() => {
             console.log('file saved')
@@ -44,9 +40,20 @@ class FileSystem{
         })
     }
 
-    readFile = async () => {
+    // async getResult(){
+    //     const obj = await RNFS.readFile(this.fullPath, 'utf8')
+    // }
+
+    // async getData(){
+    //     this.getResult().then(res => {
+    //         console.log(res)
+    //         return eval(JSON.parse(res))
+    //     })
+    // }
+
+    async getData(){
         const obj = await RNFS.readFile(this.fullPath, 'utf8')
-        return await eval(JSON.parse(obj))
+        return eval(JSON.parse(obj))
     }
 }
 
