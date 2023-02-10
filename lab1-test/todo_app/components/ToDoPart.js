@@ -14,11 +14,12 @@ const database = new Database()
 
 const ToDoPart = (props) => {
     const [tasks, setTasks] = useState([])
-    const [storage, setStorage] = useState(database)
+    const [storage, setStorage] = useState(fileSystem)
 
     useEffect(() => {
       storage.init()
       if(storage == fileSystem){
+        // storage.getData()
         storage.getData().then((res) => {
           setTasks(res)
         })
@@ -27,12 +28,6 @@ const ToDoPart = (props) => {
       }
 
     }, [storage])
-
-    useEffect(() => {
-      // console.log('time to save ' + JSON.stringify(tasks))
-      // if(tasks.length)
-        // storage.setData(tasks)  
-    }, [tasks])
 
     function toggleStorage(){
       setStorage(storage == fileSystem ? database : fileSystem)
@@ -59,7 +54,7 @@ const ToDoPart = (props) => {
       })
   
       setTasks([...newTasks])
-      storage.updateTask(newTask)
+      storage.editTask(newTask)
     }
   
     function deleteTask(id){
