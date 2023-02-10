@@ -18,14 +18,7 @@ const ToDoPart = (props) => {
 
     useEffect(() => {
       storage.init()
-      if(storage == fileSystem){
-        // storage.getData()
-        storage.getData().then((res) => {
-          setTasks(res)
-        })
-      }else{
-        storage.getData(setTasks)
-      }
+      storage.getData(setTasks)
 
     }, [storage])
 

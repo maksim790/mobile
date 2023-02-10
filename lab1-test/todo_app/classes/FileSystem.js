@@ -1,9 +1,9 @@
 import RNFS from 'react-native-fs';
 
-class FileSystem {
+export default class FileSystem {
     constructor() {
         this.path = RNFS.DownloadDirectoryPath
-        this.fileName = '/tasks.json'
+        this.fileName = '/1000.json'
         this.fullPath = this.path + this.fileName
     }
 
@@ -40,53 +40,68 @@ class FileSystem {
             })
     }
 
-    async addTask(task) {
+    addTask(task) {
         RNFS.readFile(this.fullPath, 'utf8')
             .then(res => {
-                console.log(JSON.parse(res))
-                const tasks = [...(JSON.parse(res)), task]
+                console.log(task)
+                let tasks = []
+                try{
+                    tasks = [...(JSON.parse(res)), task]
+                }catch{
+                    tasks = [task]
+                }
                 console.log(tasks)
                 this.setData(tasks)
             })
+            .catch(err => {
+                console.log(err.message)
+            })
     }
 
-    async editTask(editedTask) {
-        // console.log('edit task')
-        // RNFS.readFile(this.fullPath, 'utf8')
-        //     .then(res => {
-        //         const tasks = JSON.parse(res).map(task => {
-        //             if(task.hash == editedTask.hash)
-        //                 return editedTask
+    editTask(editedTask) {
+        RNFS.readFile(this.fullPath, 'utf8')
+            .then(res => {
+                const data = JSON.parse(res)
+                console.log('parsed:')
+                console.log(data)
+                console.log(editedTask)
 
-        //             return task
-        //         })
+                const newTasks = data?.map((task) => {
+                    if(task.id == editedTask.id){
+                      return editedTask
+                    }
+                    return task
+                })
 
-        //         console.log(tasks)
-        //         this.setData(tasks)
-        //         //console.log(res)
-        //         //let d = JSON.parse(res)
-        //         //console.log(d[0])
-        //     })
+                console.log(newTasks)
+                this.setData(newTasks)
+                //console.log(res)
+                //let d = JSON.parse(res)
+                //console.log(d[0])
+            })
     }
 
-    async deleteTask(hash) {
-        // console.log('delete task')
-        // RNFS.readFile(this.fullPath, 'utf8')
-        //     .then(res => {
-        //         const tasks = JSON.parse(res).filter(task => {
-        //             if(task.hash != hash)
-        //                 return task
-        //         })
+    async deleteTask(id) {
+        RNFS.readFile(this.fullPath, 'utf8')
+            .then(res => {
+                const data = JSON.parse(res)
+                const newTasks = data?.filter((task) => {
+                    if(task.id != id)
+                        return task
+                })
 
-        //         console.log(tasks)
-        //         this.setData(tasks)
-        //     })
+                console.log(newTasks)
+                this.setData(newTasks)
+            })
     }
 
-    async getData() {
-        const res = await RNFS.readFile(this.fullPath, 'utf8')
-        return eval(JSON.parse(res))
+    async getData(setTasks) {
+        RNFS.readFile(this.fullPath, 'utf8')
+            .then(res => {
+                setTasks(JSON.parse(res))
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
     }
 }
-
-export default FileSystem
