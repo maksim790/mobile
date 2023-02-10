@@ -17,11 +17,9 @@ const ToDoPart = (props) => {
     const [storage, setStorage] = useState(database)
 
     useEffect(() => {
-      console.log('storage changed')
       storage.init()
       if(storage == fileSystem){
         storage.getData().then((res) => {
-          console.log('result: '+ res)
           setTasks(res)
         })
       }else{
@@ -31,9 +29,9 @@ const ToDoPart = (props) => {
     }, [storage])
 
     useEffect(() => {
-      //console.log('time to save ' + JSON.stringify(tasks))
+      // console.log('time to save ' + JSON.stringify(tasks))
       // if(tasks.length)
-        // storage.setData(tasks)
+        // storage.setData(tasks)  
     }, [tasks])
 
     function toggleStorage(){
@@ -43,11 +41,13 @@ const ToDoPart = (props) => {
     function getStorageValue(){
       if(storage === fileSystem)
         return true
+
       return false
     }
   
     function addTask(task){
       setTasks([...tasks, task])
+      storage.addTask(task)
     }
   
     function editTask(id, newTask){
@@ -59,7 +59,7 @@ const ToDoPart = (props) => {
       })
   
       setTasks([...newTasks])
-      //console.log(tasks)
+      storage.updateTask(newTask)
     }
   
     function deleteTask(id){
@@ -70,6 +70,7 @@ const ToDoPart = (props) => {
       })
   
       setTasks([...newTasks])
+      storage.deleteTask(id)
     }
   
     return (

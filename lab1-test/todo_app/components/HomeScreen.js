@@ -16,8 +16,8 @@ const HomeScreen = ({navigation, route, tasks, editTask, deleteTask}) => {
     setFilter(text.toLowerCase())
   }
 
-  console.log('_____')
-  console.log(tasks)
+  // console.log('_____')
+  // console.log(tasks)
   const todos = (typeof tasks == 'undefined' || tasks.length == 0) ? emptyListString : tasks.filter(task => {
     if(task.name.toLowerCase().includes(filter.trim()))
       return task

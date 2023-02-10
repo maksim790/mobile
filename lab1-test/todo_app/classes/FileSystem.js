@@ -40,17 +40,6 @@ class FileSystem{
         })
     }
 
-    // async getResult(){
-    //     const obj = await RNFS.readFile(this.fullPath, 'utf8')
-    // }
-
-    // async getData(){
-    //     this.getResult().then(res => {
-    //         console.log(res)
-    //         return eval(JSON.parse(res))
-    //     })
-    // }
-
     async getData(){
         const obj = await RNFS.readFile(this.fullPath, 'utf8')
         return eval(JSON.parse(obj))

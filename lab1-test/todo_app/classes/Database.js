@@ -13,7 +13,7 @@ export default class Database{
 
     this.db.transaction(txn => {
       txn.executeSql(
-        `CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), content VARCHAR(100), checked VARCHAR(10))`,
+        `CREATE TABLE IF NOT EXISTS SuperTasks (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), content VARCHAR(100), checked VARCHAR(10), hash VARCHAR(20))`,
         [],
         (sqlTxn, res) => {
           console.log("table created successfully");
@@ -25,12 +25,55 @@ export default class Database{
     });
   }
 
+  async addTask(task){
+    console.log('task to add: ')
+    console.log(task)
+    this.db.transaction(function (txn) {
+      txn.executeSql(
+        'INSERT INTO SuperTasks (name, content, checked, hash) VALUES (?,?,?,?)',
+        [task.name, task.content, task.checked, task.id],
+        (txn, results) => {
+          console.log('task added')
+          console.log('res:' + results.rowsAffected)
+        }
+      );
+    });
+  }
+
+  async updateTask(task){
+    console.log('task to update: ')
+    console.log(task)
+    this.db.transaction(function (txn) {
+      txn.executeSql(
+        'UPDATE SuperTasks SET name = ? , content = ?, checked = ? WHERE hash = ?', [task.name, task.content, task.checked, task.id],
+        (txn, results) => {
+          console.log('task updated')
+          console.log('res:' + results.rowsAffected)
+        }
+      );
+    });
+  }
+
+  async deleteTask(id){
+    console.log('id to delete: ' + id)
+    this.db.transaction(function (txn) {
+      txn.executeSql(
+        'DELETE FROM SuperTasks WHERE hash = ?', [id],
+        (txn, results) => {
+          console.log('task deleted')
+          console.log('res:' + results.rowsAffected)
+        }
+      );
+    });
+  }
+
   async setData(data){
     this.db.transaction(function (txn) {
       txn.executeSql(
-        'INSERT INTO tasks (name, content, checked) VALUES (?,?,?)',
-        [data[0].name, data[0].content, data[0].checked],
+        'INSERT INTO SuperTasks (name, content, checked, hash) VALUES (?,?,?,?)',
+        [data[data.length-1].name, data[data.length-1].content, data[data.length-1].checked, data[data.length-1].id],
         (txn, results) => {
+          console.log('set:' + data.length)
           console.log('Results', results.rowsAffected);
         }
       );
@@ -41,12 +84,20 @@ export default class Database{
     let data
     this.db.transaction((txn) => {
       txn.executeSql(
-        'SELECT * FROM tasks',
+        'SELECT * FROM SuperTasks',
         [],
         (txn, results) => {
-          data = results.rows.item(0)
-          console.log(data)
-          setTasks([{...data, checked: (Boolean(data.checked))}])
+          const length = results.rows.length
+          console.log('length: ' + length)
+          let task, tasks = []
+          for(let i = 0; i < length; i++){
+            data = results.rows.item(i)
+            console.log(data)
+            task = {...results.rows.item(i), checked: (Boolean(data.checked)), id: data.hash}
+            tasks.push(task)
+          }
+         
+          setTasks(tasks)
         }
       );
     });
