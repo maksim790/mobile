@@ -3,6 +3,7 @@ import Feed from './Feed'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as rssParser from 'react-native-rss-parser';
 import {useState, useEffect} from 'react'
+import Details from './Details'
 
 const Stack = createNativeStackNavigator();
 
@@ -10,7 +11,7 @@ const RssSection = () => {
   const [feed, setFeed] = useState({})
 
   useEffect(() => {
-    fetch('https://www.cbsnews.com/latest/rss/main')
+    fetch('https://www.nasa.gov/rss/dyn/breaking_news.rss')
     .then((response) => response.text())
     .then((responseData) => rssParser.parse(responseData))
     .then((rss) => {
@@ -24,6 +25,7 @@ const RssSection = () => {
         <Stack.Screen name="Feed" >
           {(props) => <Feed {...props} feed={feed} />}
         </Stack.Screen>
+        <Stack.Screen name="Details" component={Details}/>
     </Stack.Navigator>
   )
 }
