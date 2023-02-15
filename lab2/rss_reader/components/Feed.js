@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 import FeedItem from './FeedItem'
 
 const Feed = ({feed}) => {
@@ -16,7 +16,9 @@ const Feed = ({feed}) => {
     return (
         <View>
             <Text>Hi!</Text>
-            {feedItems}
+            <ScrollView>
+                {feedItems}
+            </ScrollView>
         </View>
     )
 }

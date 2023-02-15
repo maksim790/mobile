@@ -1,13 +1,15 @@
 import React from 'react'
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, Touchable, TouchableOpacity } from 'react-native'
 
 const FeedItem = ({item}) => {
   return (
-    <View>
+    <TouchableOpacity onPress={
+      
+    }>
         <Text>{item.title}</Text>
-        <Text>{item.content}</Text>
+        <Text>{item.description}</Text>
         {/* <Image source={{uri: item.enclosures[0].url}}/> */}
-    </View>
+    </TouchableOpacity>
   )
 }
 
