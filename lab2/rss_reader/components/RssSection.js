@@ -11,7 +11,7 @@ const RssSection = () => {
   const [feed, setFeed] = useState({})
 
   useEffect(() => {
-    fetch('https://www.nasa.gov/rss/dyn/breaking_news.rss')
+    fetch('https://www.cbsnews.com/latest/rss/main')
     .then((response) => response.text())
     .then((responseData) => rssParser.parse(responseData))
     .then((rss) => {
