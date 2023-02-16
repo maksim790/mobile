@@ -28,7 +28,7 @@ const Feed = ({navigation, route, feed}) => {
 
     return (
         <View>
-            <Text>Hi!</Text>
+            {/* <Text>Hi!</Text> */}
             <ScrollView>
                 {feedItems}
             </ScrollView>
