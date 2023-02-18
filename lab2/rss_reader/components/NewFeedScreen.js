@@ -1,9 +1,15 @@
 import React from 'react'
 import { View, TextInput, Button } from 'react-native'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 const NewFeedScreen = ({navigation, route, addFeed}) => {
     const [url, setUrl] = useState('')
+
+    useEffect(() => {
+        navigation.setOptions({
+            title: 'New feed',
+        });
+    }, [])
 
     function handleChange(text){
         setUrl(text)

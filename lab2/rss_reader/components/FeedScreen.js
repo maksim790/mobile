@@ -8,18 +8,21 @@ const FeedScreen = ({navigation, route}) => {
     const [feed, setFeed] = useState({})
 
     useEffect(() => {
-        fetch(route.params.feed.url)
-        .then((response) => response.text())
-        .then((responseData) => rssParser.parse(responseData))
-        .then((rss) => {
-            setFeed(rss)
+        navigation.setOptions({
+            title: route.params.feed.title,
         });
-      }, [])
+
+        fetch(route.params.feed.url)
+            .then((response) => response.text())
+            .then((responseData) => rssParser.parse(responseData))
+            .then((rss) => {
+                setFeed(rss)
+            });
+    }, [])
 
     const emptyFeedString = <Text>No feed items</Text>
-    // console.log(navigation)
+    
     const feedItems = !(!!feed?.items) ? emptyFeedString : feed.items.map((item, index) => {
-        // console.log(item.links[0].url)
         return <FeedItem 
             item={item}
             key={index}

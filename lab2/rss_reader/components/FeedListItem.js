@@ -4,14 +4,14 @@ import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import styles from '../styles'
 
 const FeedListItem = ({navigation, feed, onPress}) => {
-  return (
-    <TouchableOpacity onPress={onPress}>
-          <View style={styles.feedItem__main}>
-              <Text >{feed.title}</Text>
-              <Text>{feed.description}</Text>
-          </View>
-      </TouchableOpacity>
-  )
+    return (
+        <TouchableOpacity onPress={onPress} style={styles.feedItem}>
+            <View style={styles.feedItem__main}>
+                <Text style={styles.feedItem__title}>{feed.title}</Text>
+                {/* <Text style={styles.feedItem__title}>{feed.description}</Text> */}
+            </View>
+        </TouchableOpacity>
+    )
 }
 
 export default FeedListItem

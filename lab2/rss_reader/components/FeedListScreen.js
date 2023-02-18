@@ -3,10 +3,12 @@ import { View, Button, ScrollView } from 'react-native'
 import {useEffect} from 'react'
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import FeedListItem from './FeedListItem'
+import styles from '../styles'
 
 const FeedListScreen = ({navigation, feedList}) => {
     useEffect(() => {
         navigation.setOptions({
+            title: 'Feeds',
             headerRight: () => (
                 <Button
                     title='Add'
@@ -22,7 +24,7 @@ const FeedListScreen = ({navigation, feedList}) => {
                     }
                 />
             ),
-          });
+        });
     }, [])
 
     console.log(feedList)
