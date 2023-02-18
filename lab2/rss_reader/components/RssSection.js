@@ -1,31 +1,41 @@
 import React from 'react'
-import Feed from './Feed'
+import FeedScreen from './FeedScreen'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as rssParser from 'react-native-rss-parser';
 import {useState, useEffect} from 'react'
-import Details from './Details'
+import DetailsScreen from './DetailsScreen'
+import FeedListScreen from './FeedListScreen';
+import NewFeedScreen from './NewFeedScreen'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Stack = createNativeStackNavigator();
 
 const RssSection = () => {
-  const [feed, setFeed] = useState({})
+  const [feeds, setFeeds] = useState([])
 
-  useEffect(() => {
-    fetch('https://www.cbsnews.com/latest/rss/main')
-    .then((response) => response.text())
-    .then((responseData) => rssParser.parse(responseData))
-    .then((rss) => {
-      setFeed(rss)
-      console.log(rss.items.length)
-    });
-  }, [])
+  function addFeed(newFeedUrl){
+    fetch(newFeedUrl)
+      .then((response) => response.text())
+      .then((responseData) => rssParser.parse(responseData))
+      .then((rss) => {
+          const newFeed = {title: rss.title, description: rss.description, url: newFeedUrl}
+          console.log(newFeed)
+          setFeeds([...feeds, newFeed])
+      });
+  }
 
   return (
-    <Stack.Navigator initialRouteName="Feed">
-        <Stack.Screen name="Feed" >
-          {(props) => <Feed {...props} feed={feed} />}
+    <Stack.Navigator initialRouteName="FeedScreen">
+        <Stack.Screen name="Feeds" >
+            {(props) => <FeedListScreen {...props} feedList={feeds} />}
         </Stack.Screen>
-        <Stack.Screen name="Details" component={Details}/>
+        <Stack.Screen name="NewFeed" >
+            {(props) => <NewFeedScreen {...props} addFeed={addFeed} />}
+        </Stack.Screen>
+        <Stack.Screen name="FeedContent" >
+            {(props) => <FeedScreen {...props} />}
+        </Stack.Screen>
+        <Stack.Screen name="Details" component={DetailsScreen}/>
     </Stack.Navigator>
   )
 }

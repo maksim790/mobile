@@ -1,10 +1,22 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Text, View, ScrollView } from 'react-native'
 import FeedItem from './FeedItem'
+import * as rssParser from 'react-native-rss-parser';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 
-const Feed = ({navigation, route, feed}) => {
-    const emptyFeedString = <Text>No feed</Text>
+const FeedScreen = ({navigation, route}) => {
+    const [feed, setFeed] = useState({})
+
+    useEffect(() => {
+        fetch(route.params.feed.url)
+        .then((response) => response.text())
+        .then((responseData) => rssParser.parse(responseData))
+        .then((rss) => {
+            setFeed(rss)
+        });
+      }, [])
+
+    const emptyFeedString = <Text>No feed items</Text>
     // console.log(navigation)
     const feedItems = !(!!feed?.items) ? emptyFeedString : feed.items.map((item, index) => {
         // console.log(item.links[0].url)
@@ -28,7 +40,6 @@ const Feed = ({navigation, route, feed}) => {
 
     return (
         <View>
-            {/* <Text>Hi!</Text> */}
             <ScrollView>
                 {feedItems}
             </ScrollView>
@@ -36,4 +47,4 @@ const Feed = ({navigation, route, feed}) => {
     )
 }
 
-export default Feed
+export default FeedScreen

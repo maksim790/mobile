@@ -2,7 +2,7 @@ import React from 'react'
 import WebView from 'react-native-webview'
 import { View } from 'react-native'
 
-const Details = ({route}) => {
+const DetailsScreen = ({route}) => {
     console.log(route.params.src)
     return (
         <WebView 
@@ -12,4 +12,4 @@ const Details = ({route}) => {
     )
 }
 
-export default Details
+export default DetailsScreen
