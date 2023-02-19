@@ -17,7 +17,8 @@ const FeedScreen = ({navigation, route}) => {
             .then((responseData) => rssParser.parse(responseData))
             .then((rss) => {
                 setFeed(rss)
-            });
+            })
+            .catch((err) => console.log(err.message));
     }, [])
 
     const emptyFeedString = <Text>No feed items</Text>

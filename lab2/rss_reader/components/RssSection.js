@@ -7,11 +7,16 @@ import DetailsScreen from './DetailsScreen'
 import FeedListScreen from './FeedListScreen';
 import NewFeedScreen from './NewFeedScreen'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
 
 const RssSection = () => {
     const [feeds, setFeeds] = useState([])
+
+    useEffect(() => {
+        getStorageData()
+    }, [])
 
     function addFeed(newFeedUrl){
         fetch(newFeedUrl)
@@ -21,7 +26,21 @@ const RssSection = () => {
                 const newFeed = {title: rss.title, description: rss.description, url: newFeedUrl}
                 console.log(newFeed)
                 setFeeds([...feeds, newFeed])
-          });
+                saveStorageData([...feeds, newFeed])
+            })
+            .catch((err) => console.log(err.message));
+    }
+
+    const saveStorageData = (feeds) => {
+        AsyncStorage.setItem('feeds', JSON.stringify(feeds))
+    }
+
+    const getStorageData = () =>{
+        AsyncStorage.getItem('feeds')
+            .then((value) => {
+                if(value)
+                    setFeeds(JSON.parse(value))
+            })
     }
 
     return (
