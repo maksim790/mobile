@@ -15,24 +15,9 @@ const ScanResultView = ({scanned, onPress}) => {
     }
 
     return (
-        <View style={styles.resultContainer}>
-            <Text>{scanned.data}</Text>
-            <Text>QR-code URL</Text>
+        <View style={styles.container}>
+            <Text style={styles.textInput}>{scanned.data}</Text>
             <View style={styles.urlBtnContainer}>
-                {/* <Pressable
-                    onPress={handleLink}
-                    style={styles.urlButton}>
-                    <Text>Go to URL</Text>
-                </Pressable>
-                <Pressable 
-                    onPress={() => Clipboard.setString(scanned.data)}
-                    style={styles.urlButton}>
-                    <Text>Copy</Text>
-                </Pressable>
-                <Pressable onPress={onPress}
-                    style={styles.urlButton}>
-                    <Text>Scan again</Text>
-                </Pressable> */}
                 <ActionButton title='Go to URL' onPress={handleLink}/>
                 <ActionButton title='Copy' onPress={() => Clipboard.setString(scanned.data)}/>
                 <ActionButton title='Scan again' onPress={onPress}/>

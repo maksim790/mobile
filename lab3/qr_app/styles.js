@@ -32,10 +32,11 @@ const styles = StyleSheet.create({
       gap: 90,
     },
     urlBtnContainer: {
+      marginTop: 10,
       display: 'flex',
       flexDirection: 'column', 
       justifyContent: 'flex-end',
-      gap: 10,
+      gap: 20,
     },
     urlButton: {
       alignItems: 'center',
@@ -50,7 +51,37 @@ const styles = StyleSheet.create({
       height: '100%',
       // borderWidth: 10,
       // borderColor: 'red',
-    }
+    }, 
+    generateButton: {
+      backgroundColor: '#38598b',
+      alignItems: 'center',
+      borderRadius: 5,
+      paddingHorizontal: 10,
+      width: 155,
+    },
+    generateButtonText: {
+      color: 'white',
+      paddingVertical: 16,
+      fontSize: 16,
+      fontWeight: 800,
+    },  
+    textInput: {
+      // borderWidth: 1,
+      fontSize: 16,
+      flexDirection: 'row',
+      height: 40,
+      marginTop: 20,
+      marginLeft: 35,
+      marginRight: 35,
+      margin: 10,
+    },
+    container: {
+      flex: 1,
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+    },
   });
 
   export default styles
