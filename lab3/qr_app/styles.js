@@ -4,20 +4,33 @@ import {
 } from 'react-native';
 
 const styles = StyleSheet.create({
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
+    marker: {
+      borderColor: 'white',
+      borderWidth: 1, 
+      padding: 130,
+      borderRadius: 50,
     },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
+    scanner: {
+      // borderWidth: 5, 
+      borderColor: 'red',
     },
-    sectionDescription: {
-      marginTop: 8,
+    topContent: {
+      flex: 1,
       fontSize: 18,
-      fontWeight: '400',
+      padding: 30,
+      color: '#777',
+      fontWeight: 800,
     },
-    highlight: {
-      fontWeight: '700',
-    },
+    settingsContainer: {
+      position: 'relative',
+      top: -50,
+      // borderWidth: 5, 
+      // borderColor: 'red',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      gap: 90,
+    }
   });
+
+  export default styles
