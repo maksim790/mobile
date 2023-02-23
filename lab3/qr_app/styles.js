@@ -30,6 +30,26 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-around',
       gap: 90,
+    },
+    urlBtnContainer: {
+      display: 'flex',
+      flexDirection: 'column', 
+      justifyContent: 'flex-end',
+      gap: 10,
+    },
+    urlButton: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 12,
+      paddingHorizontal: 32,
+      borderRadius: 10,
+      elevation: 4,
+      backgroundColor: '#a2a8d3',
+    },
+    resultContainer: {
+      height: '100%',
+      // borderWidth: 10,
+      // borderColor: 'red',
     }
   });
 
