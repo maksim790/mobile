@@ -13,7 +13,8 @@ const ScanResultView = ({scanned, onPress}) => {
 
     return (
         <View>
-            <Text onPress={handleLink}>{scanned.data}</Text>
+            <Text onPress={handleLink} selectable>{scanned.data}</Text>
+            <Text>QR-code URL</Text>
             <Button
                 title='Scan again'
                 color="#5585b5"

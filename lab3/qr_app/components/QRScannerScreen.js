@@ -4,7 +4,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import styles from '../styles'
 import ScanResultView from './ScanResultView'
-import Icon from 'react-native-vector-icons/Feather';
+import SettingsIcon from './SettingsIcon';
 
 const QRScannerScreen = ({navigation}) => {
     const [scanned, setScanned] = useState(false)
@@ -40,18 +40,14 @@ const QRScannerScreen = ({navigation}) => {
             }
             bottomContent={
                 <View style={styles.settingsContainer}>
-                    <Icon 
+                    <SettingsIcon 
                         name={flash ? 'zap' : 'zap-off'} 
-                        size={25} 
-                        color='white' 
                         onPress={() => {setFlash(!flash)}}
-                    ></Icon>
-                    <Icon 
+                    />
+                    <SettingsIcon 
                         name={marker ? 'square' : 'x-square'} 
-                        size={25} 
-                        color='white' 
                         onPress={() => {setMarker(!marker)}}
-                    ></Icon>
+                    />
                 </View>
             }
         />
