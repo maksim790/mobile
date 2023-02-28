@@ -1,13 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import WebView from 'react-native-webview'
-import { View } from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
+import styles from '../styles'
 
 const DetailsScreen = ({route}) => {
     console.log(route.params.src)
+    const [loading, setLoading] = useState(true)
+
     return (
         <WebView 
-            source={{uri: route.params.src}} 
-            onLoad={console.log('Loaded')}
+            source={{uri: route.params.src}}
+            // onLoadStart={() => setLoading(true)} 
+            // onLoadEnd={() => setLoading(false)}
         />
     )
 }

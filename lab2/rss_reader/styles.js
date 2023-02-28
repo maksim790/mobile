@@ -48,6 +48,19 @@ const styles = StyleSheet.create({
     },
     loadingCircle: {
         marginTop: 30,  
+    },
+    newFeedContainer: {
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+    },
+    newFeedContainerText: {
+        fontSize: 18,
+    },
+    newFeedContainerButton: {
+        // width: 1220,
     }
 });
 

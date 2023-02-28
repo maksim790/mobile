@@ -8,6 +8,7 @@ import FeedListScreen from './FeedListScreen';
 import NewFeedScreen from './NewFeedScreen'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +19,7 @@ const RssSection = () => {
         getStorageData()
     }, [])
 
-    function addFeed(newFeedUrl){
+    function addFeed(newFeedUrl, showMessage){
         fetch(newFeedUrl)
             .then((response) => response.text())
             .then((responseData) => rssParser.parse(responseData))
@@ -27,8 +28,18 @@ const RssSection = () => {
                 console.log(newFeed)
                 setFeeds([...feeds, newFeed])
                 saveStorageData([...feeds, newFeed])
+                showMessage({
+                    message: "Success",
+                    type: "success",
+                })
             })
-            .catch((err) => console.log(err.message));
+            .catch((err) => {
+                console.log(err.message)
+                showMessage({
+                    message: 'Unexpected URL address',
+                    type: "warning",
+                })
+            });
     }
 
     const saveStorageData = (feeds) => {
