@@ -6,12 +6,10 @@ import styles from '../styles'
 const QRGeneratorScreen = () => {
   const [inputValue, setValue] = useState('')
   const [qrValue, setQRValue] = useState('')
-  let generatedQR = useRef()  
 
   return (
     <View style={styles.container}>
         <QRCode
-          getRef={(ref) => (generatedQR = ref)}
           value={qrValue ? qrValue : 'no value'}
           size={250}
           color="black"
