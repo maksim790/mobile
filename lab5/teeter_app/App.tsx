@@ -1,11 +1,13 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import { View, Dimensions } from 'react-native';
 import styles from './styles'
 import { GameEngine } from "react-native-game-engine";
 import Ball from './components/Ball'
+import GameLoop from './systems/GameLoop';
 
 function App(): JSX.Element {
   const engine = useRef(null);
+  const [gameRunning, setGameRunning] = useState(true);
 
   return (
     <View style={styles.canvas}>
@@ -14,15 +16,16 @@ function App(): JSX.Element {
         style={styles.gameEngine}
         entities={{
           ball : {
-            position: [2, 2],
-            size: 110,
-            updateFrequency: 10,
-            nextMove: 10,
-            xspeed: 0,
-            yspeed: 0,
-            renderer: <Ball />,
+            pos: {x: 1, y: 1},
+            size: 40,
+            // updateFrequency: 10,
+            // nextMove: 10,
+            speed: {x: 0, y: 0},
+            renderer: Ball,
           }
         }}
+        systems={[GameLoop]}
+        running={gameRunning}
       />
     </View>
   )

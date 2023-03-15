@@ -2,18 +2,21 @@ import React from "react";
 import { View, Image } from "react-native";
 import styles from '../styles'
 
-export default function Ball({ position, size }) {
+export default function Ball({ pos, size }) {
   return (
     <View
       style={{
-        backgroundColor: 'green',
+        backgroundColor: 'transparent',
         width: size,
         height: size,
         position: "absolute",
-        left: position[0] * size,
-        top: position[1] * size,
+        left: pos.x * size,
+        top: pos.y * size,
     }}>
-        {/* <Image source={require('../assets/ball.png')}/> */}
+        <Image 
+          source={require('../assets/ball.png')}
+          style={styles.ballImage}
+        />
     </View>
   );
 } 

@@ -8,12 +8,15 @@ export default styles = StyleSheet.create({
       justifyContent: "center",
     }, 
     gameEngine: {
-        width: '100%',
-        height: '100%',
-        flex: null,
-        backgroundColor: "white",
+      width: '100%',
+      height: '100%',
+      flex: null,
+      backgroundColor: "white",
     },
     ballImage: {
-        
+      flex: 1,
+      width: null,
+      height: null,
+      resizeMode: 'contain'
     },
   });
