@@ -1,8 +1,9 @@
 import React, {useRef, useState} from 'react';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, Image, ImageBackground } from 'react-native';
 import styles from './styles'
 import { GameEngine } from "react-native-game-engine";
 import Ball from './components/Ball'
+import Wall from './components/Wall'
 import GameLoop from './systems/GameLoop';
 
 function App(): JSX.Element {
@@ -16,17 +17,22 @@ function App(): JSX.Element {
         style={styles.gameEngine}
         entities={{
           ball : {
-            pos: {x: 1, y: 1},
-            size: 40,
-            // updateFrequency: 10,
-            // nextMove: 10,
+            pos: {x: 50, y: 50},
+            radius: 40,
             speed: {x: 0, y: 0},
+            acn: {x: 0, y: 0},
+            dir: {x: 0, y: 0},
             renderer: Ball,
+          },
+          wall : {
+            width: 15,
+            renderer: Wall,
           }
         }}
         systems={[GameLoop]}
         running={gameRunning}
-      />
+      >
+      </GameEngine>
     </View>
   )
 }

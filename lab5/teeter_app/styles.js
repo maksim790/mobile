@@ -11,7 +11,7 @@ export default styles = StyleSheet.create({
       width: '100%',
       height: '100%',
       flex: null,
-      backgroundColor: "white",
+      backgroundColor: "#3e4a61",
     },
     ballImage: {
       flex: 1,
