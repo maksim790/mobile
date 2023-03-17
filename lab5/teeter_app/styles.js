@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import {elevation} from 'react-native-elevation'
 
 export default styles = StyleSheet.create({
     canvas: {
@@ -17,6 +18,14 @@ export default styles = StyleSheet.create({
       flex: 1,
       width: null,
       height: null,
-      resizeMode: 'contain'
+      resizeMode: 'cover',
+
+      // elevation: 10,
+      // shadowColor: 'red'
+    },
+    shadow: {
+      shadowColor: '#202020',
+      shadowOffset: {width: 0, height: 0},
+      shadowRadius: 5,
     },
   });

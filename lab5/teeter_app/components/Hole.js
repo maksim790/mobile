@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image } from "react-native";
 import styles from '../styles'
 
-export default function Ball({ pos, radius }) {
+export default function Hole({ pos, radius }) {
   return (
     <View
       style={{
@@ -12,11 +12,10 @@ export default function Ball({ pos, radius }) {
         position: "absolute",
         left: pos.x,
         top: pos.y,
-        zIndex: 10,
         // borderWidth: 1,
     }}>
         <Image 
-          source={require('../assets/5555.png')}
+          source={require('../assets/fg.png')}
           style={styles.ballImage}
         />
     </View>

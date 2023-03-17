@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "18.2.0",
     "react-native": "0.71.3",
+    "react-native-elevation": "^1.0.0",
     "react-native-game-engine": "^1.2.0",
     "react-native-sensors": "^7.3.6"
   },
