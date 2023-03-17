@@ -7,15 +7,16 @@ export default function Hole({ pos, radius }) {
     <View
       style={{
         backgroundColor: 'transparent',
-        width: radius,
-        height: radius,
+        width: 2 * radius,
+        height: 2 * radius,
         position: "absolute",
         left: pos.x,
         top: pos.y,
         // borderWidth: 1,
+        borderRadius: radius,
     }}>
         <Image 
-          source={require('../assets/fg.png')}
+          source={require('../assets/bb.png')}
           style={styles.ballImage}
         />
     </View>

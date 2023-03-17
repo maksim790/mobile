@@ -8,11 +8,17 @@ setUpdateIntervalForType(SensorTypes.accelerometer, 100);
 
 export default function (entities, { events, dispatch }) {
     const ball = entities.ball
+    const holes = []
+    for(var prop in entities){
+        if(prop.startsWith('holeId'))
+            holes.push(entities[prop])
+    }
+    // console.log(holes)
     // const wall = entities.wall
 
-    const time = 0.2,// time for iteration
-    my = 0.01
-    k = 0.3
+    const time = 0.2,
+        my = 0.01
+        k = 0.3
 
     ball.acn = {
         x: Math.round(-accelerations.x),
@@ -34,16 +40,18 @@ export default function (entities, { events, dispatch }) {
 
     ball.pos.x += dx
     ball.pos.y += dy
-
-    // console.log(ball.pos)
     
     ball.speed = {
         x: ball.speed.x += ball.acn.x * time - (my) * ball.speed.x,
         y: ball.speed.y += ball.acn.y * time - (my) * ball.speed.y
     }
-    
 
-    // console.log(ball.speed)
+    holes.forEach((hole) => {
+        if(Math.sqrt(Math.pow(Math.abs(ball.pos.x - hole.pos.x), 2) + 
+            Math.pow(Math.abs(ball.pos.y - hole.pos.y), 2)) <= ball.radius){
+            dispatch('game-over')
+        }
+    })
 
     return entities;
 }

@@ -7,16 +7,17 @@ export default function Ball({ pos, radius }) {
     <View
       style={{
         backgroundColor: 'transparent',
-        width: radius,
-        height: radius,
+        width: 2 * radius,
+        height: 2 * radius,
         position: "absolute",
         left: pos.x,
         top: pos.y,
         zIndex: 10,
         // borderWidth: 1,
+        borderRadius: radius,
     }}>
         <Image 
-          source={require('../assets/5555.png')}
+          source={require('../assets/last.png')}
           style={styles.ballImage}
         />
     </View>

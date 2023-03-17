@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import { View, Dimensions, Image, ImageBackground } from 'react-native';
+import { View, Dimensions, Image, ImageBackground, Alert } from 'react-native';
 import styles from './styles'
 import { GameEngine } from "react-native-game-engine";
 import Ball from './components/Ball'
@@ -14,7 +14,7 @@ function App(): JSX.Element {
   let entities = {
     ball : {
       pos: {x: 90, y: 90},
-      radius: 30,
+      radius: 15,
       speed: {x: 0, y: 0},
       acn: {x: 0, y: 0},
       dir: {x: 0, y: 0},
@@ -22,10 +22,10 @@ function App(): JSX.Element {
     },
   }
 
-  for(let i = 0; i < 5; i++){
+  for(let i = 0; i < 16; i++){
     entities['holeId_'+ i] = {
-        pos: {x: 20 + 90 * i, y: 20 + 100 * i},
-        radius: 30,
+        pos: {x: 20 + 20 * i, y: 20 + 45 * i},
+        radius: 15,
         renderer: Hole,
     }
   }
@@ -38,6 +38,14 @@ function App(): JSX.Element {
         entities={entities}
         systems={[GameLoop]}
         running={gameRunning}
+        onEvent={(e) => {
+          switch(e){
+            case 'game-over':
+              alert('Game over!')
+              setGameRunning(false)
+              return
+          }
+        }}
       >
       </GameEngine>
     </View>
