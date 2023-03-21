@@ -41,9 +41,10 @@ function App(): JSX.Element {
         onEvent={(e) => {
           switch(e){
             case 'game-over':
-              alert('Game over!')
               setGameRunning(false)
-              return
+              alert('Game over!')
+              setGameRunning(true)
+              // return
           }
         }}
       >

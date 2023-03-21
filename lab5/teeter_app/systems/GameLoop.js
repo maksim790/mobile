@@ -16,8 +16,8 @@ export default function (entities, { events, dispatch }) {
     // console.log(holes)
     // const wall = entities.wall
 
-    const time = 0.2,
-        my = 0.01
+    const time = 0.3,
+        my = 0.03
         k = 0.3
 
     ball.acn = {
@@ -46,6 +46,7 @@ export default function (entities, { events, dispatch }) {
         y: ball.speed.y += ball.acn.y * time - (my) * ball.speed.y
     }
 
+    // console.log(ball.speed)
     holes.forEach((hole) => {
         if(Math.sqrt(Math.pow(Math.abs(ball.pos.x - hole.pos.x), 2) + 
             Math.pow(Math.abs(ball.pos.y - hole.pos.y), 2)) <= ball.radius){
