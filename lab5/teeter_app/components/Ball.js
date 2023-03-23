@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Image } from "react-native";
 import styles from '../styles'
 import Matter from 'matter-js'
 
 const Ball = (props) => {
     const radiusBody = props.radius
+    
     const xBody = props.body.position.x - radiusBody
     const yBody = props.body.position.y - radiusBody
+
+    useEffect(() => {
+
+    }, [])
 
     return (
       <View
         style={{
           backgroundColor: 'transparent',
-          width: radiusBody,
-          height: radiusBody,
+          width: 2 * radiusBody,
+          height: 2 * radiusBody,
           position: "absolute",
           left: xBody,
           top: yBody,
@@ -21,7 +26,7 @@ const Ball = (props) => {
           // borderWidth: 1,
       }}>
           <Image 
-            source={require('../assets/5555.png')}
+            source={require('../assets/last.png')}
             style={styles.ballImage}
           />
       </View>
@@ -29,7 +34,7 @@ const Ball = (props) => {
 }
 
 export default (world, pos, radius) => {
-    console.log(radius)
+    // console.log(radius)
     const initialBall = Matter.Bodies.circle(
         pos.x, 
         pos.y,

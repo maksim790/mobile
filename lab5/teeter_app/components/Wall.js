@@ -1,24 +1,53 @@
 import React from "react";
-import { View, Image, } from "react-native";
+import { View, Image } from "react-native";
 import styles from '../styles'
+import Matter from 'matter-js'
 
-export default function Walls(pos, size) {
-  return (
-    <View
-      style={{
-        backgroundColor: 'transparent',
-        width: '100%',
-        height: '100%',
-        position: "absolute",
-        left: 0,
-        top: 0,
-        borderWidth: 15,
-        borderColor: '#1a2639',
-    }}>
-        {/* <Image 
-          source={require('../assets/ball.png')}
-          style={styles.ballImage}
-        /> */}
-    </View>
-  );
+const Wall = (props) => {
+  
+    const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
+    const heightBody = props.body.bounds.max.y - props.body.bounds.min.y
+    // console.log(widthBody, heightBody)
+    
+    const xBody = props.body.position.x - widthBody / 2
+    const yBody = props.body.position.y - heightBody / 2
+
+    const color = props.color
+
+    return (
+      <View
+        style={{
+          backgroundColor: color,
+          width: widthBody,
+          height: heightBody,
+          position: "absolute",
+          left: xBody,
+          top: yBody,
+          // borderRadius: radiusBody,
+          // borderWidth: 1,
+      }}/>
+    )
+}
+
+export default (world, color, pos, size) => {
+
+    const initialWall = Matter.Bodies.rectangle(
+        pos.x, 
+        pos.y,
+        size.width,
+        size.height,
+        {
+          label: 'Wall',
+          isStatic: true,
+        }
+    )
+
+    Matter.World.add(world, initialWall)
+
+    return {
+        body: initialWall,
+        color,
+        pos,
+        renderer: <Wall/>,
+    }
 } 
