@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image } from "react-native";
 import styles from '../styles'
 
-export default function Hole({ pos, radius }) {
+export default function Hole(pos, radius) {
   return (
     <View
       style={{
