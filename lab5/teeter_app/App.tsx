@@ -5,6 +5,7 @@ import { GameEngine } from "react-native-game-engine";
 // import GameLoop from './systems/GameLoop';
 import entities from './entities'
 import Physics from './physics'
+// import { OrientationLocker, PORTRAIT, LANDSCAPE } from "react-native-orientation-locker";
 
 function App(): JSX.Element {
   const [running, setRunning] = useState(false);

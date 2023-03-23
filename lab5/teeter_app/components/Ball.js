@@ -9,10 +9,6 @@ const Ball = (props) => {
     const xBody = props.body.position.x - radiusBody
     const yBody = props.body.position.y - radiusBody
 
-    useEffect(() => {
-
-    }, [])
-
     return (
       <View
         style={{

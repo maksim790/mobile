@@ -13,8 +13,7 @@ export default Physics = (entities, {touches, time, dispatch}) => {
     Matter.Engine.update(engine, time.delta)
 
     const motions = accelerations()
-    engine.gravity.x = -motions.x / 10
-    engine.gravity.y = motions.y / 10
+    engine.gravity = {x: motions.y / 10,  y: motions.x / 10}
 
     return entities
 }

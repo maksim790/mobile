@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, Text } from "react-native";
 import styles from '../styles'
 import Matter from 'matter-js'
 
@@ -25,7 +25,8 @@ const Wall = (props) => {
           top: yBody,
           // borderRadius: radiusBody,
           // borderWidth: 1,
-      }}/>
+      }}>
+      </View>
     )
 }
 
