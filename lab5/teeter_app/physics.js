@@ -8,12 +8,13 @@ export default Physics = (entities, {touches, time, dispatch}) => {
     touches.filter(t => t.type === 'press')
         .forEach(t => {
             //start game
+            console.log('pressed')
         })
 
     Matter.Engine.update(engine, time.delta)
 
     const motions = accelerations()
-    engine.gravity = {x: motions.y / 10,  y: motions.x / 10}
+    engine.gravity = {x: motions.x / 10,  y: motions.y / 10}
 
     return entities
 }

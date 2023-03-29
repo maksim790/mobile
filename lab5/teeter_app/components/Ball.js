@@ -18,11 +18,12 @@ const Ball = (props) => {
           position: "absolute",
           left: xBody,
           top: yBody,
+          zIndex: 10,
           // borderRadius: radiusBody,
           // borderWidth: 1,
       }}>
           <Image 
-            source={require('../assets/last.png')}
+            source={require('../assets/croppedball.png')}
             style={styles.ballImage}
           />
       </View>

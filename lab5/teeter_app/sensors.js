@@ -12,8 +12,8 @@ const subscription = accelerometer.subscribe((data) => {
 setUpdateIntervalForType(SensorTypes.accelerometer, 100);
 
 const updateSensors = ({x, y}) => {
-    accelerations.x = x
-    accelerations.y = y
+    accelerations.x = y
+    accelerations.y = x
 }
 
 export default getAccelerations = () => {return accelerations}
