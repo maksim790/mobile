@@ -2,6 +2,7 @@ import React from "react";
 import { View, Image, Text } from "react-native";
 import styles from '../styles'
 import Matter from 'matter-js'
+import {ballCategory, wallCategory} from '../CollisionCategories'
 
 const Wall = (props) => {
   
@@ -40,6 +41,11 @@ export default (world, color, pos, size) => {
         {
           label: 'Wall',
           isStatic: true,
+          collisionFilter: {
+            group: 1,
+            category: wallCategory,
+            mask: ballCategory,
+          }
         }
     )
 

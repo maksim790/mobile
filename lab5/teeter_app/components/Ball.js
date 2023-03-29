@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { View, Image } from "react-native";
 import styles from '../styles'
 import Matter from 'matter-js'
+import {ballCategory, holeCategory, wallCategory} from '../CollisionCategories'
 
 const Ball = (props) => {
     const radiusBody = props.radius
@@ -36,7 +37,15 @@ export default (world, pos, radius) => {
         pos.x, 
         pos.y,
         radius,
-        {label: 'Ball'}
+        {
+          label: 'Ball',
+          mass: 1,
+          collisionFilter: {
+            group: -1,
+            category: ballCategory,
+            mask: wallCategory,
+          }
+        }
     )
 
     // console.log(initialBall)
