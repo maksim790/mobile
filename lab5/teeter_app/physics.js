@@ -7,8 +7,8 @@ export default Physics = (entities, {touches, time, dispatch}) => {
 
     touches.filter(t => t.type === 'press')
         .forEach(t => {
-            Matter.Body.setPosition(entities.Ball.body, entities.Ball.pos)
-            Matter.Body.setStatic(entities.Ball.body, 0)
+            Matter.Body.setStatic(entities.Ball.body, false)
+            console.log('go!')
         })
 
     Matter.Engine.update(engine, time.delta)

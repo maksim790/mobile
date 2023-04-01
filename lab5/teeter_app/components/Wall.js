@@ -41,11 +41,6 @@ export default (world, color, pos, size) => {
         {
           label: 'Wall',
           isStatic: true,
-          collisionFilter: {
-            group: 1,
-            category: wallCategory,
-            mask: ballCategory,
-          }
         }
     )
 

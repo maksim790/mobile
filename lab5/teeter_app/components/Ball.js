@@ -39,12 +39,8 @@ export default (world, pos, radius) => {
         radius,
         {
           label: 'Ball',
-          mass: 1,
-          collisionFilter: {
-            group: -1,
-            category: ballCategory,
-            mask: wallCategory,
-          }
+          restitution: 0.4,
+          isStatic: true,
         }
     )
 
