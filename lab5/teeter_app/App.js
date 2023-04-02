@@ -3,7 +3,7 @@ import { StatusBar, View } from 'react-native';
 import styles from './styles'
 import { GameEngine } from "react-native-game-engine";
 import entities from './entities'
-import Physics from './physics'
+import {Physics, Touches, Interactions} from './physics'
 
 function App(): JSX.Element {
   const [running, setRunning] = useState(false);
@@ -19,11 +19,11 @@ function App(): JSX.Element {
         ref={(ref) => {setGameEngine(ref)}}
         style={styles.gameEngine}
         entities={entities()}
-        systems={[Physics]}
+        systems={[Physics, Touches, Interactions]}
         running={running}
         onEvent={(e) => {
           switch(e.type){
-            case 'game_over':
+            case 'next_level':
               setRunning(false)
               gameEngine.stop()
           }

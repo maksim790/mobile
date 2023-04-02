@@ -10,55 +10,9 @@ export default restart => {
     let world = engine.world
     world.gravity.y = 0
 
-    const interaction = {active: 0}
-
-    const ball = Ball(world, {x: 640, y: 30}, 15)
-
-    Matter.Events.on(engine, 'collisionStart', (event) => {
-        var pairs = event.pairs;
-
-        for (var i = 0; i < pairs.length; i++) {
-            var pair = pairs[i];
-
-            if(pair.bodyB.isSensor){
-                interaction.bodyA = pair.bodyA
-                interaction.bodyB = pair.bodyB
-                interaction.active = 1
-            }
-        }
-    })
-
-    Matter.Events.on(engine, 'beforeUpdate', () => {
-        if(interaction.active){
-            engine.gravity.x = 0
-            engine.gravity.y = 0
-
-            const {bodyA, bodyB, active} = interaction
-
-            if((Math.round(bodyA.position.x) == Math.round(bodyB.position.x)) && 
-                (Math.round(bodyA.position.y) == Math.round(bodyB.position.y))){
-
-                Matter.Body.setVelocity(bodyA, Matter.Vector.create(0, 0))
-                Matter.Body.setStatic(bodyA, true)
-                interaction.active = 0
-
-                Matter.Body.setPosition(bodyA, ball.pos)
-            }else{
-                Matter.Body.setStatic(bodyA, true)
-                Matter.Body.setVelocity(bodyA, Matter.Vector.create(0, 0))
-
-                const vector = Matter.Vector.create((bodyB.position.x - bodyA.position.x) / 4000, 
-                    (bodyB.position.y - bodyA.position.y) / 4000)
-
-                Matter.Body.applyForce(bodyA, bodyA.position, vector)
-                Matter.Body.setStatic(bodyA, false)
-            }
-        }
-    })
-
     return {
         physics: {engine, world},
-        Ball: ball,
+        Ball: Ball(world, {x: 640, y: 30}, 15),
         PrimaryHole: Hole(world, {x: 120, y: 50}, 1, true),
         Hole1: Hole(world, {x: 100, y: 140}, 1),
         Hole2: Hole(world, {x: 230, y: 30}, 1),
