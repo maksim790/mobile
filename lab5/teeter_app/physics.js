@@ -30,10 +30,12 @@ const interaction = {active: false}
 export const Interactions = (entities, {touches, time, dispatch}) =>  {
     let engine = entities.physics.engine
 
-    if(!time.previous){//first iteration
+    if(!time.previous){
+        console.log(Object.keys(entities).length)
         Matter.Events.on(engine, 'collisionStart', (event) => {
             var pairs = event.pairs;
     
+            console.log('col')
             for (var i = 0; i < pairs.length; i++) {
                 var pair = pairs[i];
     
@@ -61,11 +63,11 @@ export const Interactions = (entities, {touches, time, dispatch}) =>  {
 
                     if(entities.PrimaryHole.body === bodyB){
                         dispatch({type: 'next_level'})
+                    }else{
+                        dispatch({type: 'try_again'})
                     }
-
-                    dispatch({type: 'try_again'})
                     
-                    Matter.Body.setPosition(bodyA, entities.Ball.pos)
+                    // Matter.Body.setPosition(bodyA, entities.Ball.pos)
                 }else{
                     Matter.Body.setStatic(bodyA, true)
                     Matter.Body.setVelocity(bodyA, Matter.Vector.create(0, 0))
