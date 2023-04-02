@@ -8,7 +8,7 @@ import {Physics, Touches, Interactions} from './physics'
 function App(): JSX.Element {
   const [running, setRunning] = useState(false);
   const [gameEngine, setGameEngine] = useState(null)
-  const [level, setLevel] = useState(0)
+  const [level, setLevel] = useState(2)
 
   useEffect(() => {
     setRunning(true)
@@ -31,7 +31,7 @@ function App(): JSX.Element {
           switch(e.type){
             case 'next_level':
               console.log('next')
-              setLevel(level + 1)
+              setLevel(level < 1 ? level + 1 : 0)
               break
             case 'try_again':
               console.log('again')

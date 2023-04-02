@@ -32,10 +32,10 @@ export const Interactions = (entities, {touches, time, dispatch}) =>  {
 
     if(!time.previous){
         console.log(Object.keys(entities).length)
+        
         Matter.Events.on(engine, 'collisionStart', (event) => {
             var pairs = event.pairs;
     
-            console.log('col')
             for (var i = 0; i < pairs.length; i++) {
                 var pair = pairs[i];
     
