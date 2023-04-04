@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Image, Text } from "react-native";
-import styles from '../styles'
+import styles from '../../styles'
 import Matter from 'matter-js'
-import {ballCategory, wallCategory} from '../CollisionCategories'
+import {ballCategory, wallCategory} from '../../CollisionCategories'
 
 const Wall = (props) => {
   

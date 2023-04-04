@@ -1,7 +1,7 @@
 import Matter from 'matter-js'
-import Ball from '../components/Ball'
-import Wall from '../components/Wall'
-import Hole from '../components/Hole'
+import Ball from '../components/game/Ball'
+import Wall from '../components/game/Wall'
+import Hole from '../components/game/Hole'
 
 const levels = [
     {

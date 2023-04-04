@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { View, Image } from "react-native";
-import styles from '../styles'
+import styles from '../../styles'
 import Matter from 'matter-js'
-import defaultHole from '../assets/true_hole.png'
-import primaryHole from '../assets/primary_hole_0.png'
+import defaultHole from '../../assets/true_hole.png'
+import primaryHole from '../../assets/primary_hole_0.png'
 
 const Hole = (props) => {
     const radiusBody = props.radius

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { View, Image } from "react-native";
-import styles from '../styles'
+import styles from '../../styles'
 import Matter from 'matter-js'
-import {ballCategory, holeCategory, wallCategory} from '../CollisionCategories'
+import {ballCategory, holeCategory, wallCategory} from '../../CollisionCategories'
 
 const Ball = (props) => {
     const radiusBody = props.radius
@@ -24,7 +24,7 @@ const Ball = (props) => {
           // borderWidth: 1,
       }}>
           <Image 
-            source={require('../assets/croppedball.png')}
+            source={require('../../assets/croppedball.png')}
             style={styles.ballImage}
           />
       </View>
