@@ -6,6 +6,11 @@ import Hole from '../components/game/Hole'
 const levels = [
     {
         balls: [
+            {x: 390, y: 200}
+        ],
+    },
+    {
+        balls: [
             {x: 640, y: 30}
         ],
         holes: [
@@ -120,3 +125,5 @@ const wallFactory = (world, walls) => {
 
     return wallsObj
 }
+
+export {levels}

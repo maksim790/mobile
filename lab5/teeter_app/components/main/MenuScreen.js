@@ -27,10 +27,21 @@ const MenuScreen = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.urlBtnContainer}>
-          <MenuOption title='Play' onPress={() => navigation.navigate('Game')}/>
-          <MenuOption title='Calibrate'/>
+          <MenuOption title='Play' onPress={() => navigation.navigate('Levels')}/>
+          <MenuOption 
+            title='Calibrate'
+            onPress={() => {
+              navigation.dispatch(
+                  CommonActions.navigate({
+                      name: 'Game',
+                      params: { level: 0 }
+                  })
+              )
+            }} 
+          />
           <MenuOption title='Exit' onPress={() => backPressed()}/>
       </View>
+      <StatusBar hidden={true}/>
     </View>
   )
 }

@@ -6,7 +6,6 @@ export const Physics = (entities, {touches, time, dispatch}) => {
     let engine = entities.physics.engine
 
     Matter.Engine.update(engine, time.delta)
-
     const motions = accelerations()
     engine.gravity = {x: motions.x,  y: motions.y}
 
@@ -18,8 +17,10 @@ export const Touches = (entities, {touches, time, dispatch}) =>  {
 
     touches.filter(t => t.type === 'press')
         .forEach(t => {
-            Matter.Body.setStatic(entities.Ball.body, false)
-            console.log('go')
+            if(entities.Ball.body.isStatic){
+                Matter.Body.setStatic(entities.Ball.body, false)
+                console.log('go')
+            }
         })
 
     return entities
@@ -31,7 +32,7 @@ export const Interactions = (entities, {touches, time, dispatch}) =>  {
     let engine = entities.physics.engine
 
     if(!time.previous){
-        console.log(Object.keys(entities).length)
+        // console.log(Object.keys(entities).length)
         
         Matter.Events.on(engine, 'collisionStart', (event) => {
             var pairs = event.pairs;
