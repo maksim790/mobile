@@ -61,7 +61,7 @@ const GameScreen = ({navigation, route}) => {
                 switch(e.type){
                     case 'next_level':
                       console.log('next')
-                      setLevel(level < 1 ? level + 1 : 0)
+                      setLevel(level < 1 ? level + 1 : 1)
                       break
                     case 'try_again':
                       console.log('again')

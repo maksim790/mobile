@@ -61,6 +61,54 @@ const levels = [
     },
     {
         balls: [
+            {x: 380, y: 30}
+        ],
+        holes: [
+            {x: 670, y: 330},
+            {x: 240, y: 75},   
+            {x: 520, y: 75},  
+            {x: 220, y: 165},   
+            {x: 540, y: 165},  
+            {x: 335, y: 215}, 
+            {x: 395, y: 215},
+            {x: 455, y: 215},
+            {x: 285, y: 265},
+            {x: 505, y: 265},
+        ],
+        walls: [
+            // {x: 120, y: 290, width: 90, height: 130},
+            // {x: 120, y: 70, width: 90, height: 130},
+            {x: 380, y: 50, width: 460, height: 10},
+            {x: 170, y: 140, width: 220, height: 10},
+            {x: 590, y: 140, width: 220, height: 10},
+            {x: 380, y: 95, width: 10, height: 10},
+            {x: 380, y: 140, width: 10, height: 10},
+            {x: 330, y: 140, width: 10, height: 10},
+            {x: 430, y: 140, width: 10, height: 10},
+
+            {x: 380, y: 190, width: 10, height: 10},
+            {x: 330, y: 190, width: 10, height: 10},
+            {x: 430, y: 190, width: 10, height: 10},
+            {x: 280, y: 195, width: 10, height: 10},
+            {x: 480, y: 195, width: 10, height: 10},
+            {x: 230, y: 190, width: 10, height: 10},
+            {x: 530, y: 190, width: 10, height: 10},
+
+            {x: 380, y: 235, width: 10, height: 10},
+            {x: 340, y: 250, width: 10, height: 10},
+            {x: 420, y: 250, width: 10, height: 10},
+            {x: 290, y: 235, width: 10, height: 10},
+            {x: 470, y: 235, width: 10, height: 10},
+            {x: 230, y: 250, width: 10, height: 10},
+            {x: 530, y: 250, width: 10, height: 10},
+
+            {x: 190, y: 290, width: 260, height: 10},
+            {x: 570, y: 290, width: 260, height: 10},
+        ]
+        
+    },
+    {
+        balls: [
             {x: 110, y: 320}
         ],
         holes: [
