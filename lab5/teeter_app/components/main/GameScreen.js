@@ -1,28 +1,38 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { StatusBar, Text, View } from 'react-native';
 import styles from '../../styles'
 import { GameEngine } from "react-native-game-engine";
 import entities from '../../entities'
 import {Physics, Touches, Interactions} from '../../physics'
-import { Stopwatch, Timer } from 'react-native-stopwatch-timer'
 import {Slider} from '@miblanchard/react-native-slider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SettingSaveBtn from './SettingSaveBtn';
-import {addSettingSensor} from '../../sensors'
+import {addSettingSensor, getSensorAngles, setSensorAngles} from '../../sensors'
+import GameModal from './GameModal';
 
 
 const GameScreen = ({navigation, route}) => {
-    const [running, setRunning] = useState(false);
+    const [running, setRunning] = useState(false)
+
     const [gameEngine, setGameEngine] = useState(null)
     const [level, setLevel] = useState(route.params.level)
 
     const [timer, setTimer] = useState(true)
-    const [settings, setSettings] = useState({sensetivity: 8})
+
+    const [settings, setSettings] = useState({
+      sensetivity: 8,
+      angles: {x: 90, y: 90}
+    })
+    
+    const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
       getStorageData()
       if(!settings){
-        setSettings({sensetivity: 8})
+        setSettings({
+          sensetivity: 8,
+          angles: {x: 90, y: 90}
+        })
         saveStorageData(settings)
       }
       setRunning(true)
@@ -33,7 +43,12 @@ const GameScreen = ({navigation, route}) => {
     }, [level])
 
     useEffect(() => {
-      addSettingSensor(settings.sensetivity)
+      console.log(modalVisible)
+    },[modalVisible])
+
+    useEffect(() => {
+      addSettingSensor(settings)
+      console.log(settings)
     }, [settings])
 
     const saveStorageData = (settings) => {
@@ -49,28 +64,49 @@ const GameScreen = ({navigation, route}) => {
           })
     }
 
+    const handleUpdate = (modalVisible) => {
+      setModalVisible(modalVisible)
+    } 
+
+    const handleExit = () => {
+      navigation.goBack()
+    }
+
     return (
       <View style={styles.canvas}>
         <GameEngine
-            ref={(ref) => {setGameEngine(ref)}}
-            style={styles.gameEngine}
-            entities={entities(level)}
-            systems={[Physics, Touches, Interactions]}
-            running={running}
-            onEvent={(e) => {
-                switch(e.type){
-                    case 'next_level':
-                      console.log('next')
-                      setLevel(level < 1 ? level + 1 : 1)
-                      break
-                    case 'try_again':
-                      console.log('again')
-                      gameEngine.swap(entities(level))
-                      break
-                }
-            }}
+          ref={(ref) => {setGameEngine(ref)}}
+          style={styles.gameEngine}
+          entities={entities(level)}
+          systems={[Physics, Touches, Interactions]}
+          running={running}
+          onEvent={(e) => {
+              switch(e.type){
+                  case 'next_level':
+                    console.log('next')
+                    setModalVisible(true)
+                    // setLevel(level < 1 ? level + 1 : 1)
+                    break
+                  case 'try_again':
+                    console.log('again')
+                    gameEngine.swap(entities(level))
+                    break
+              }
+          }}
         >
         </GameEngine>
+        <GameModal 
+          modalVisible={modalVisible} 
+          handleUpdate={handleUpdate} 
+          handleExit={handleExit}
+          handleLevelNext={() => {
+            setLevel(level < 4 ? level + 1 : 1)
+            setModalVisible(false)
+          }}
+          handleLevelAgain={() => {
+            gameEngine.swap(entities(level))
+            setModalVisible(false)
+          }}/>
         <StatusBar hidden={true}/>
         {level == 0 && 
         <>
@@ -82,9 +118,15 @@ const GameScreen = ({navigation, route}) => {
               maximumValue={20}
             />
           </View>
-          <SettingSaveBtn title='Save' onPress={() =>{
-            saveStorageData(settings)
-          }}/>
+          <View style={styles.calibrationButtons}>
+            {/* <SettingSaveBtn title='Calibrate' onPress={() =>{
+              setSettings({...settings, angles: getSensorAngles()})
+            }}/> */}
+            <SettingSaveBtn title='Save' onPress={() =>{
+              // setSensorAngles(settings)
+              saveStorageData(settings)
+            }}/>
+          </View>
         </>}
       </View>
     )

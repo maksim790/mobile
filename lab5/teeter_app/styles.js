@@ -76,15 +76,69 @@ export default styles = StyleSheet.create({
       height: 10,
     },
     saveBtn: {
-      position: 'absolute',
-      right: 100,
-      bottom: 10,
       // backgroundColor: '#975a5e',
       backgroundColor: '#202020',
       alignItems: 'center',
       borderRadius: 5,
       paddingHorizontal: 10,
       width: 100,
-      margin: 10,
     },
+    calibrationButtons: {
+      right: 100,
+      bottom: 20,
+      position: 'absolute',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 10,
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: -30,
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: '#e3f6f5',
+      borderRadius: 20,
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    width: 80,
+    backgroundColor: '#975a5e',
+    padding: 10,
+    elevation: 2,
+    borderRadius: 15,
+  },
+  buttonOpen: {
+    // backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    // backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    fontSize: 16,
+    fontWeight: 800,
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  modalBtnContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 10,
+  }
   });
